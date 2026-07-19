@@ -155,7 +155,7 @@ h1 {
 .about-me {
     flex: 1;
     /* Takes up available space */
-    padding-right: 120px;
+    padding-right: 60px;
     /* space between text and image */
     font-family: "EB Garamond", serif;
     font-optical-sizing: auto;
@@ -192,6 +192,7 @@ h1 {
 .photo {
     width: 24vw;
     height: 24vw;
+    margin-right: 60px;
 }
 
 .photo img {
@@ -298,7 +299,7 @@ h1 {
 }
 
 .publication-title:hover {
-    color: #dc708f;
+    color: #8b5fac;
 }
 
 .publication-meta {
@@ -339,5 +340,5 @@ h1 {
 }
 
 .bottom {
-    background-color: #fb7624;
+    background-color: #fc8f77;
 }
