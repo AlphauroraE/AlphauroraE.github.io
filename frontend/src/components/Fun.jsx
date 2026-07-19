@@ -27,6 +27,7 @@ const TOTAL_WIDTH = BUILDINGS.reduce((sum, b) => sum + b.width, 0);
 const WINDOW_SIZE = 3;
 const WINDOW_GAP = 3;
 const WINDOW_LIT_CHANCE = 0.35;
+const SHOOTING_STAR_COUNT = 7;
 
 function buildWindows(offsetX, offsetY, width, height) {
     const cols = Math.floor((width - WINDOW_GAP) / (WINDOW_SIZE + WINDOW_GAP));
@@ -68,6 +69,40 @@ const Fun = () => {
         }))
     ), []);
 
+    const shootingStars = useMemo(() => (
+        Array.from({ length: SHOOTING_STAR_COUNT }).map(() => {
+            // Right to left, slight downward diagonal.
+            const angle = (12 + Math.random() * 10) * (Math.PI / 180);
+            const travel = 90 + Math.random() * 60;
+            const dx = -travel * Math.cos(angle);
+            const dy = travel * Math.sin(angle);
+            const trailRatio = 0.65;
+
+            // Keep the whole path (start through end) clear of the display edges.
+            const marginX = TOTAL_WIDTH * 0.12;
+            const marginYTop = SKY_HEIGHT * 0.08;
+            const usableMinX = marginX + travel;
+            const usableMaxX = TOTAL_WIDTH - marginX;
+            const sx = usableMinX + Math.random() * Math.max(usableMaxX - usableMinX, 0);
+            const usableMaxY = SKY_HEIGHT * 0.45 - dy;
+            const sy = marginYTop + Math.random() * Math.max(usableMaxY - marginYTop, 0);
+
+            return {
+                sx,
+                sy,
+                ex: sx + dx,
+                ey: sy + dy,
+                // Anti-parallel to the motion vector so the tail always traces
+                // the star's actual path rather than a separately guessed angle.
+                trailX: -dx * trailRatio,
+                trailY: -dy * trailRatio,
+                r: Math.random() * 0.5 + 0.15,
+                delay: Math.random() * 8,
+                duration: 5 + Math.random() * 5,
+            };
+        })
+    ), []);
+
     return (
         <div className="fun-page">
             <svg
@@ -75,8 +110,67 @@ const Fun = () => {
                 viewBox={`0 0 ${TOTAL_WIDTH} ${SKY_HEIGHT}`}
                 preserveAspectRatio="xMidYMax slice"
             >
+                <defs>
+                    {shootingStars.map((s, i) => (
+                        <linearGradient
+                            key={`shooting-gradient-${i}`}
+                            id={`shootingTrail-${i}`}
+                            gradientUnits="userSpaceOnUse"
+                            x1={0}
+                            y1={0}
+                            x2={s.trailX}
+                            y2={s.trailY}
+                        >
+                            <stop offset="0%" stopColor="#fff" stopOpacity="0.9" />
+                            <stop offset="100%" stopColor="#fff" stopOpacity="0" />
+                        </linearGradient>
+                    ))}
+                </defs>
                 {stars.map((s, i) => (
                     <circle key={`star-${i}`} cx={s.cx} cy={s.cy} r={s.r} fill="#fff" />
+                ))}
+                {shootingStars.map((s, i) => (
+                    <g key={`shooting-${i}`}>
+                        <line
+                            x1={0}
+                            y1={0}
+                            x2={s.trailX}
+                            y2={s.trailY}
+                            pathLength={100}
+                            stroke={`url(#shootingTrail-${i})`}
+                            strokeWidth="0.4"
+                            strokeLinecap="round"
+                            strokeDasharray={100}
+                        >
+                            <animate
+                                attributeName="stroke-dashoffset"
+                                values="100; 100; 0; 100; 100"
+                                keyTimes="0; 0.8; 0.95; 0.98; 1"
+                                dur={`${s.duration}s`}
+                                begin={`${s.delay}s`}
+                                repeatCount="indefinite"
+                            />
+                        </line>
+                        <circle cx={0} cy={0} r={s.r} fill="#fff">
+                            <animate
+                                attributeName="opacity"
+                                values="0; 0; 1; 1; 0; 0"
+                                keyTimes="0; 0.795; 0.8; 0.95; 0.96; 1"
+                                dur={`${s.duration}s`}
+                                begin={`${s.delay}s`}
+                                repeatCount="indefinite"
+                            />
+                        </circle>
+                        <animateTransform
+                            attributeName="transform"
+                            type="translate"
+                            values={`${s.sx},${s.sy}; ${s.sx},${s.sy}; ${s.ex},${s.ey}; ${s.ex},${s.ey}`}
+                            keyTimes="0; 0.8; 0.95; 1"
+                            dur={`${s.duration}s`}
+                            begin={`${s.delay}s`}
+                            repeatCount="indefinite"
+                        />
+                    </g>
                 ))}
                 {/* City skyline temporarily disabled:
                 {buildings.map((b, i) => (
