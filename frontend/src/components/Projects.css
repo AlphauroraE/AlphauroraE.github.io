@@ -1,0 +1,22 @@
+.project-page {
+    padding: 120px 20px 40px;
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 300px);
+    justify-content: center;
+    gap: 80px 60px;
+}
+
+@media (max-width: 1024px) {
+    .project-grid {
+        grid-template-columns: repeat(2, 300px);
+    }
+}
+
+@media (max-width: 680px) {
+    .project-grid {
+        grid-template-columns: repeat(1, 300px);
+    }
+}

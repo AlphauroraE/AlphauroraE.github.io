@@ -1,0 +1,14 @@
+.fun-page {
+    position: relative;
+    min-height: 100vh;
+    background-color: #000;
+    overflow: hidden;
+}
+
+.skyline {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+}

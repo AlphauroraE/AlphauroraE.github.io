@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
+
+
+.polaroid {
+    width: 300px;
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 20px;
+    box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: "Special Elite", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    transition: transform 0.3s ease;
+}
+
+.polaroid:hover {
+    transform: rotate(calc(var(--tilt, 1) * 1.5deg));
+}
+
+.image {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}
+
+.label {
+    margin-top: 25px;
+    text-align: center;
+}
+
+.stickers {
+    margin-top: 10px;
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.sticker {
+    width: 30px;
+    height: 40px;
+    object-fit: contain;
+    border-radius: 4px;
+}
