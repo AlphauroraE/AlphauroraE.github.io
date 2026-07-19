@@ -81,6 +81,10 @@
     color: #4285f4;
 }
 
+.bottom .Email:hover {
+    color: #dc708f;
+}
+
 /* .bottom .made-with-love {
     font-style: italic;
     user-select: none;
