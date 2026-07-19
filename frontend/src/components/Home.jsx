@@ -41,6 +41,23 @@ const Home = () => {
                     <img src={profile} alt="Joanne's Profile" />
                 </div>
             </div>
+            <div className="publications-section">
+                <h2>Publications</h2>
+                <ul className="publications-list">
+                    <li className="publication-item">
+                        <div className="publication-title">Placeholder Publication Title Goes Here</div>
+                        <div className="publication-meta">A. Author, B. Author, C. Author — Conference/Journal Name, 2025</div>
+                    </li>
+                    <li className="publication-item">
+                        <div className="publication-title">Another Placeholder Publication Title</div>
+                        <div className="publication-meta">A. Author, B. Author — Conference/Journal Name, 2024</div>
+                    </li>
+                    <li className="publication-item">
+                        <div className="publication-title">Yet Another Placeholder Publication Title</div>
+                        <div className="publication-meta">A. Author — Conference/Journal Name, 2023</div>
+                    </li>
+                </ul>
+            </div>
         </div>
     );
 };

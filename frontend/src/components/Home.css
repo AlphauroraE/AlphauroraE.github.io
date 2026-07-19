@@ -147,8 +147,8 @@ h1 {
 }
 
 .photo {
-    width: 30vw;
-    height: 30vw;
+    width: 24vw;
+    height: 24vw;
 }
 
 .photo img {
@@ -159,6 +159,52 @@ h1 {
     display: block;
     border-radius: 50%;
     /* border: 10px solid gold; */
+}
+
+.publications-section {
+    background: white;
+    padding: 60px;
+    text-align: left;
+}
+
+.publications-section h2 {
+    font-family: "EB Garamond", serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 32px;
+    color: black;
+    margin: 0 0 30px;
+}
+
+.publications-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-width: 800px;
+}
+
+.publication-item {
+    padding: 20px 0;
+    border-bottom: 1px solid #e5e4e7;
+}
+
+.publication-item:first-child {
+    border-top: 1px solid #e5e4e7;
+}
+
+.publication-title {
+    font-family: "EB Garamond", serif;
+    font-weight: 600;
+    font-size: 19px;
+    color: black;
+    margin-bottom: 6px;
+}
+
+.publication-meta {
+    font-family: "EB Garamond", serif;
+    font-size: 15px;
+    color: #555;
 }
 
 .bottom {
