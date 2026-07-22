@@ -74,6 +74,11 @@
     transition: color 0.3s ease;
 }
 
+.copyright,
+.made-with-love {
+    color: black;
+}
+
 .bottom .LinkedIn:hover {
     color: #0275b3;
 }

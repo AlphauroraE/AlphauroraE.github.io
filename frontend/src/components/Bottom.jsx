@@ -15,12 +15,12 @@ const Bottom = () => {
                 <a className="GoogleScholar" href="https://scholar.google.com/citations?user=U7eWwDMAAAAJ&hl=en" target="_blank" rel="noopener noreferrer" aria-label="Google Scholar">
                     <GoogleScholarIcon size={24} />
                 </a>
-                <a className="Email" href="mailto:joanne@placeholder.edu" aria-label="Email">
+                <a className="Email" href="mailto:qidiwang@vt.edu" aria-label="Email">
                     <FaEnvelope size={24} />
                 </a>
             </div>
-            {/* <div>Copyright © Joanne Wang. All rights reserved.</div> */}
-            {/* <div className="made-with-love">Made with love ❤️</div> */}
+            <div className="copyright">Copyright © Joanne Wang. All rights reserved.</div>
+            <div className="made-with-love">Made with love ❤️</div>
         </div>
     );
 };
