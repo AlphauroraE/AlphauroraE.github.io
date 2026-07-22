@@ -34,6 +34,11 @@
     transition: color 0.3s ease;
 }
 
+/* Temporarily hidden from the nav; route is still reachable directly. */
+.nav-link-hidden {
+    display: none;
+}
+
 .nav-links a:hover {
     color: #ea473e;
 }
