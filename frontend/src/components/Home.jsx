@@ -4,46 +4,7 @@ import './Home.css';
 import profile from '../assets/photo.jpg';
 import Bottom from './Bottom';
 
-const PUBLICATIONS = [
-    {
-        title: 'Cross-Domain Gender Identification Using VR Tracking Data',
-        meta: 'Qidi J. Wang, Alec G. Moore, Nayan N. Chawla, Ryan P. McMahan — IEEE ISMAR, 2024',
-        doi: 'https://doi.org/10.1109/ISMAR62088.2024.00032',
-        bibtex: `@inproceedings{wang2024crossdomain,
-  title={Cross-Domain Gender Identification Using VR Tracking Data},
-  author={Wang, Qidi J. and Moore, Alec G. and Chawla, Nayan N. and McMahan, Ryan P.},
-  booktitle={2024 IEEE International Symposium on Mixed and Augmented Reality (ISMAR)},
-  publisher={IEEE},
-  year={2024},
-  month={Oct},
-  pages={180--189},
-  doi={10.1109/ISMAR62088.2024.00032}
-}`,
-    },
-    {
-        title: 'Gender Identification of VR Users by Machine Learning Tracking Data',
-        meta: 'Qidi J. Wang, Ryan P. McMahan — IEEE VRW, 2024',
-        doi: 'https://doi.org/10.1109/VRW62533.2024.00210',
-        bibtex: `@inproceedings{wang2024gender,
-  title={Gender Identification of VR Users by Machine Learning Tracking Data},
-  author={Wang, Qidi J. and McMahan, Ryan P.},
-  booktitle={2024 IEEE Conference on Virtual Reality and 3D User Interfaces Abstracts and Workshops (VRW)},
-  publisher={IEEE},
-  year={2024},
-  month={Mar},
-  pages={827--828},
-  doi={10.1109/VRW62533.2024.00210}
-}`,
-    },
-];
-
 const Home = () => {
-    const [openCiteIndex, setOpenCiteIndex] = useState(null);
-
-    const toggleCite = (index) => {
-        setOpenCiteIndex((current) => (current === index ? null : index));
-    };
-
     return (
         <div>
             <div
@@ -81,9 +42,9 @@ const Home = () => {
                         Hello! I'm Joanne, a PhD student in Computer Science at Virginia Tech, advised by Dr. Ryan P. McMahan in the Xrai Lab. My research focuses on machine learning and virtual reality. I am also a "hackathon addict", creative innovator, and photographer. Welcome to my portfolio!
                     </p>
                     <div className="about-links">
-                        <a href="/CV.pdf" className="about-link" target="_blank" rel="noopener noreferrer">Curriculum Vitae (PDF)</a>
+                        <a href="#" className="about-link">Curriculum Vitae (PDF)</a>
                         <a href="mailto:qidiwang@vt.edu" className="about-link">qidiwang@vt.edu</a>
-                        <a href="#" className="about-link">Xrai Lab →</a>
+                        <a href="https://xrtlab.github.io/xrtlab-site/" className="about-link">Xrai Lab →</a>
                     </div>
                 </div>
                 <div className="photo">
@@ -118,30 +79,14 @@ const Home = () => {
             <div className="publications-section">
                 <h2>Publications</h2>
                 <ul className="publications-list">
-                    {PUBLICATIONS.map((pub, i) => (
-                        <li className="publication-item" key={pub.doi}>
-                            <a
-                                className="publication-title"
-                                href={pub.doi}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                {pub.title}
-                            </a>
-                            <div className="publication-meta">{pub.meta}</div>
-                            <button
-                                type="button"
-                                className="cite-button"
-                                onClick={() => toggleCite(i)}
-                                aria-expanded={openCiteIndex === i}
-                            >
-                                {openCiteIndex === i ? 'Hide citation' : 'Cite'}
-                            </button>
-                            {openCiteIndex === i && (
-                                <pre className="bibtex">{pub.bibtex}</pre>
-                            )}
-                        </li>
-                    ))}
+                    <li className="publication-item">
+                        <div className="publication-title">Cross-Domain Gender Identification Using VR Tracking Data</div>
+                        <div className="publication-meta">Qidi J. Wang, Alec G. Moore, Nayan N. Chawla, Ryan P. McMahan — IEEE ISMAR, 2024</div>
+                    </li>
+                    <li className="publication-item">
+                        <div className="publication-title">Gender Identification of VR Users by Machine Learning Tracking Data</div>
+                        <div className="publication-meta">Qidi J. Wang, Ryan P. McMahan — IEEE VRW, 2024</div>
+                    </li>
                 </ul>
             </div>
         </div>
