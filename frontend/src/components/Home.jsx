@@ -83,7 +83,7 @@ const Home = () => {
                     <div className="about-links">
                         <a href="/CV.pdf" className="about-link" target="_blank" rel="noopener noreferrer">Curriculum Vitae (PDF)</a>
                         <a href="mailto:qidiwang@vt.edu" className="about-link">qidiwang@vt.edu</a>
-                        <a href="#" className="about-link">Xrai Lab →</a>
+                        <a href="https://xrtlab.github.io/xrtlab-site/" className="about-link">Xrai Lab →</a>
                     </div>
                 </div>
                 <div className="photo">
