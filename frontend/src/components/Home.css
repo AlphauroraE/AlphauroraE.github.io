@@ -76,6 +76,10 @@ h1 {
     align-items: center;
 }
 
+.banner-title h1 {
+    color: white;
+}
+
 .banner-subtitle {
     font-family: "EB Garamond", serif;
     font-optical-sizing: auto;
