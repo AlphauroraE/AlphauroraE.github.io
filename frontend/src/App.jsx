@@ -15,7 +15,7 @@ import ProjectsGallery from './components/ProjectsGallery';
 function HomePage() {
   return (
     <div>
-      <NavBar />
+      <NavBar animate />
       <Home />
       <Bottom />
     </div>

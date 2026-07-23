@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import './Home.css';
 import profile from '../assets/photo.jpg';
@@ -39,6 +39,27 @@ const PUBLICATIONS = [
 
 const Home = () => {
     const [openCiteIndex, setOpenCiteIndex] = useState(null);
+    const [showHi, setShowHi] = useState(false);
+    const [showIm, setShowIm] = useState(false);
+    const [showJoanne, setShowJoanne] = useState(false);
+    const [showSubtitle, setShowSubtitle] = useState(false);
+    const [showContent, setShowContent] = useState(false);
+
+    useEffect(() => {
+        const hiTimer = setTimeout(() => setShowHi(true), 500);
+        const imTimer = setTimeout(() => setShowIm(true), 1150);
+        const joanneTimer = setTimeout(() => setShowJoanne(true), 1650);
+        const subtitleTimer = setTimeout(() => setShowSubtitle(true), 2350);
+        const contentTimer = setTimeout(() => setShowContent(true), 2900);
+
+        return () => {
+            clearTimeout(hiTimer);
+            clearTimeout(imTimer);
+            clearTimeout(joanneTimer);
+            clearTimeout(subtitleTimer);
+            clearTimeout(contentTimer);
+        };
+    }, []);
 
     const toggleCite = (index) => {
         setOpenCiteIndex((current) => (current === index ? null : index));
@@ -53,9 +74,14 @@ const Home = () => {
                 }}
             >
                 <div className="banner-title">
-                    <h1>Hi! I'm           </h1>
+                    <h1>
+                        <span className={`intro-text hi ${showHi ? 'visible' : ''}`}>Hi!</span>
+                        {' '}
+                        <span className={`intro-text im ${showIm ? 'visible' : ''}`}>I'm</span>
+                        {' '}
+                    </h1>
                     <svg
-                        className="signature"
+                        className={`signature blur-in ${showJoanne ? 'visible' : ''}`}
                         viewBox="0 0 560 300"
                         aria-label="Joanne"
                     >
@@ -72,27 +98,27 @@ const Home = () => {
                         </text>
                     </svg>
                 </div>
-                <p className="banner-subtitle">PhD Student in Computer Science · Virginia Tech</p>
+                <p className={`banner-subtitle ${showSubtitle ? 'visible' : ''}`}>PhD Student in Computer Science · Virginia Tech</p>
             </div >
             <div className="content-container">
                 {/* <div class="vignette-overlay"></div> */}
                 <div className="about-me">
-                    <p>
+                    <p className={`fade-up ${showContent ? 'visible' : ''}`}>
                         Hello! I'm Joanne, a PhD student in Computer Science at Virginia Tech, advised by Dr. Ryan P. McMahan in the Xrai Lab. My research focuses on machine learning and virtual reality. I am also a "hackathon addict", creative innovator, and photographer. Welcome to my portfolio!
                     </p>
-                    <div className="about-links">
+                    <div className={`about-links fade-up ${showContent ? 'visible' : ''}`}>
                         <a href="/CV.pdf" className="about-link" target="_blank" rel="noopener noreferrer">Curriculum Vitae (PDF)</a>
                         <a href="mailto:qidiwang@vt.edu" className="about-link">qidiwang@vt.edu</a>
                         <a href="https://xrtlab.github.io/xrtlab-site/" className="about-link">Xrai Lab →</a>
                     </div>
                 </div>
                 <div className="photo">
-                    <img src={profile} alt="Joanne's Profile" />
+                    <img className={`fade-up ${showContent ? 'visible' : ''}`} src={profile} alt="Joanne's Profile" />
                 </div>
             </div>
             <div className="news-section">
-                <h2>News</h2>
-                <ul className="news-list">
+                <h2 className={`fade-up ${showContent ? 'visible' : ''}`}>News</h2>
+                <ul className={`news-list fade-up ${showContent ? 'visible' : ''}`}>
                     <li className="news-item">
                         <span className="news-date">June 2026</span>
                         <span className="news-text">FutureHCI Workshop Paper Accepted.</span>
@@ -116,8 +142,8 @@ const Home = () => {
                 </ul>
             </div>
             <div className="publications-section">
-                <h2>Publications</h2>
-                <ul className="publications-list">
+                <h2 className={`fade-up ${showContent ? 'visible' : ''}`}>Publications</h2>
+                <ul className={`publications-list fade-up ${showContent ? 'visible' : ''}`}>
                     {PUBLICATIONS.map((pub, i) => (
                         <li className="publication-item" key={pub.doi}>
                             <a
