@@ -13,9 +13,9 @@ import Bottom from './Bottom';
 // Examples: 'top', 'bottom', 'left', 'right', 'center top', '50% 25%'
 const CAROUSEL_IMAGES = [
     { src: profile, alt: "Joanne's Profile", position: "50% 55%" },
-    { src: pyth_workshop, alt: "Joanne Teaching Python" },
-    { src: research_workshop, alt: "Joanne Teaching Research Workshop", position: "45% 40%" },
     { src: coffee_chat, alt: "Joanne at Coffee Chat", position: '80% 60%'},
+    { src: research_workshop, alt: "Joanne Teaching Research Workshop", position: "45% 40%" },
+    { src: pyth_workshop, alt: "Joanne Teaching Python" },
 ];
 
 const PUBLICATIONS = [
