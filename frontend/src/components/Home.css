@@ -131,7 +131,7 @@ h1 {
     transition-delay: 0.1s;
 }
 
-.photo img.fade-up {
+.photo-container.fade-up {
     transition-delay: 0.15s;
 }
 
@@ -272,20 +272,68 @@ h1 {
     color: #8b5fac;
 }
 
-.photo {
-    width: 24vw;
-    height: 24vw;
+.photo-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
     margin-right: 60px;
 }
 
+.photo {
+    width: 24vw;
+    height: 24vw;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+/* Original single image styles (commented out):
 .photo img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* Crop top/bottom if needed to cover area */
     display: block;
     border-radius: 50%;
-    /* border: 10px solid gold; */
+}
+*/
+
+/* Carousel styles */
+.carousel {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.carousel-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+}
+
+.carousel-image.active {
+    opacity: 1;
+}
+
+.carousel-btn {
+    background: none;
+    border: none;
+    color: #555;
+    font-size: 48px;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+    transition: color 0.3s ease;
+}
+
+.carousel-btn:hover {
+    color: #dc708f;
 }
 
 .news-section {

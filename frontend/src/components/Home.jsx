@@ -1,8 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import './Home.css';
-import profile from '../assets/photo.jpg';
+import profile from '../images/profile.jpg';
+import pyth_workshop from '../images/Me_Teaching_Python.jpg';
+import research_workshop from '../images/Research_Workshop_Behind.JPG';
+import coffee_chat from '../images/Coffee_Chat.JPG';
+
 import Bottom from './Bottom';
+
+// Carousel images - add more images here
+// Optional 'position' field controls which part of the image is shown (default: 'center')
+// Examples: 'top', 'bottom', 'left', 'right', 'center top', '50% 25%'
+const CAROUSEL_IMAGES = [
+    { src: profile, alt: "Joanne's Profile", position: "50% 55%" },
+    { src: pyth_workshop, alt: "Joanne Teaching Python" },
+    { src: research_workshop, alt: "Joanne Teaching Research Workshop", position: "45% 40%" },
+    { src: coffee_chat, alt: "Joanne at Coffee Chat", position: '80% 60%'},
+];
 
 const PUBLICATIONS = [
     {
@@ -44,6 +58,8 @@ const Home = () => {
     const [showJoanne, setShowJoanne] = useState(false);
     const [showSubtitle, setShowSubtitle] = useState(false);
     const [showContent, setShowContent] = useState(false);
+    const [carouselIndex, setCarouselIndex] = useState(0);
+    const intervalRef = useRef(null);
 
     useEffect(() => {
         const hiTimer = setTimeout(() => setShowHi(true), 500);
@@ -61,8 +77,34 @@ const Home = () => {
         };
     }, []);
 
+    // Auto-rotate carousel
+    const startAutoRotate = useCallback(() => {
+        if (CAROUSEL_IMAGES.length <= 1) return;
+        if (intervalRef.current) clearInterval(intervalRef.current);
+        intervalRef.current = setInterval(() => {
+            setCarouselIndex((prev) => (prev + 1) % CAROUSEL_IMAGES.length);
+        }, 4000);
+    }, []);
+
+    useEffect(() => {
+        startAutoRotate();
+        return () => {
+            if (intervalRef.current) clearInterval(intervalRef.current);
+        };
+    }, [startAutoRotate]);
+
     const toggleCite = (index) => {
         setOpenCiteIndex((current) => (current === index ? null : index));
+    };
+
+    const prevImage = () => {
+        setCarouselIndex((prev) => (prev - 1 + CAROUSEL_IMAGES.length) % CAROUSEL_IMAGES.length);
+        startAutoRotate(); // Reset timer after manual navigation
+    };
+
+    const nextImage = () => {
+        setCarouselIndex((prev) => (prev + 1) % CAROUSEL_IMAGES.length);
+        startAutoRotate(); // Reset timer after manual navigation
     };
 
     return (
@@ -112,8 +154,33 @@ const Home = () => {
                         <a href="https://xrtlab.github.io/xrtlab-site/" className="about-link">Xrai Lab →</a>
                     </div>
                 </div>
-                <div className="photo">
-                    <img className={`fade-up ${showContent ? 'visible' : ''}`} src={profile} alt="Joanne's Profile" />
+                <div className={`photo-container fade-up ${showContent ? 'visible' : ''}`}>
+                    {CAROUSEL_IMAGES.length > 1 && (
+                        <button className="carousel-btn carousel-btn-left" onClick={prevImage} aria-label="Previous image">
+                            &#8249;
+                        </button>
+                    )}
+                    <div className="photo">
+                        {/* Original single image (commented out):
+                        <img src={profile} alt="Joanne's Profile" />
+                        */}
+                        <div className="carousel">
+                            {CAROUSEL_IMAGES.map((image, index) => (
+                                <img
+                                    key={index}
+                                    src={image.src}
+                                    alt={image.alt}
+                                    className={`carousel-image ${index === carouselIndex ? 'active' : ''}`}
+                                    style={image.position ? { objectPosition: image.position } : undefined}
+                                />
+                            ))}
+                        </div>
+                    </div>
+                    {CAROUSEL_IMAGES.length > 1 && (
+                        <button className="carousel-btn carousel-btn-right" onClick={nextImage} aria-label="Next image">
+                            &#8250;
+                        </button>
+                    )}
                 </div>
             </div>
             <div className="news-section">
