@@ -12,14 +12,36 @@ const NavBar = ({ animate = false }) => {
         }
     }, [animate]);
 
+    const words = [
+        { text: 'Home', to: '/' },
+        { text: 'Projects', to: '/projects', hidden: true },
+        { text: 'Experience', to: '/experience' },
+        { text: 'Publications', to: '/publications' },
+        { text: 'Photography', to: '/photography' }
+    ];
+
+    const wordDuration = 0.2; // seconds per word reveal
+    let cumulativeDelay = 0;
+
     return (
         <div className="navbar">
-            <div className={`nav-links ${animate ? 'slide-in' : ''} ${showNav ? 'visible' : ''}`}>
-                <Link to="/">Home</Link>
-                <Link to="/projects" className="nav-link-hidden">Projects</Link>
-                <Link to="/experience">Experience</Link>
-                <Link to="/publications">Publications</Link>
-                <Link to="/photography">Photography</Link>
+            <div className={`nav-links ${animate ? 'with-animation' : ''} ${showNav ? 'animate-words' : ''}`}>
+                {words.map((word, index) => {
+                    const currentDelay = cumulativeDelay;
+                    if (!word.hidden) {
+                        cumulativeDelay += wordDuration;
+                    }
+                    return (
+                        <Link
+                            key={index}
+                            to={word.to}
+                            className={`nav-link-animated ${word.hidden ? 'nav-link-hidden' : ''}`}
+                            style={{ '--word-delay': `${currentDelay}s` }}
+                        >
+                            {word.text}
+                        </Link>
+                    );
+                })}
             </div>
         </div>
     );

@@ -27,23 +27,32 @@
     max-width: calc(100% - 40px);
 }
 
-/* Slide in animation from left to right */
-.nav-links.slide-in {
-    opacity: 0;
-    transform: translateX(-30px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-.nav-links.slide-in.visible {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-.nav-links a {
+/* Word-by-word slide reveal animation */
+.nav-link-animated {
+    display: inline-block;
     color: white;
     text-decoration: none;
-    /* font-weight: 500; */
     transition: color 0.3s ease;
+}
+
+/* Hide words initially when animation is enabled */
+.nav-links.with-animation .nav-link-animated {
+    clip-path: inset(0 100% 0 0);
+}
+
+/* Animate words with sliding window reveal */
+.nav-links.with-animation.animate-words .nav-link-animated {
+    animation: slideRevealWord 0.2s ease-out forwards;
+    animation-delay: var(--word-delay);
+}
+
+@keyframes slideRevealWord {
+    from {
+        clip-path: inset(0 100% 0 0);
+    }
+    to {
+        clip-path: inset(0 0 0 0);
+    }
 }
 
 /* Temporarily hidden from the nav; route is still reachable directly. */
@@ -51,7 +60,8 @@
     display: none;
 }
 
-.nav-links a:hover {
+.nav-links a:hover,
+.nav-link-animated:hover {
     color: #ea473e;
 }
 
