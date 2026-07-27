@@ -473,3 +473,126 @@ h1 {
 .bottom {
     background-color: #fc8f77;
 }
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .banner {
+        height: 35vh;
+        min-height: 250px;
+    }
+
+    .banner-title h1 {
+        font-size: 28px;
+    }
+
+    .signature {
+        width: 280px;
+        max-width: 70vw;
+    }
+
+    .signature text {
+        font-size: 140px;
+    }
+
+    .banner-subtitle {
+        font-size: 16px;
+        padding: 0 20px;
+        text-align: center;
+    }
+
+    .content-container {
+        flex-direction: column-reverse;
+        padding: 30px 20px;
+        gap: 30px;
+    }
+
+    .about-me {
+        padding-right: 0;
+        text-align: center;
+    }
+
+    .about-links {
+        justify-content: center;
+    }
+
+    .photo-container {
+        margin-right: 0;
+        justify-content: center;
+    }
+
+    .photo {
+        width: 60vw;
+        height: 60vw;
+        max-width: 280px;
+        max-height: 280px;
+    }
+
+    .carousel-btn {
+        font-size: 36px;
+    }
+
+    .news-section {
+        padding: 40px 20px 0;
+    }
+
+    .news-section h2,
+    .publications-section h2 {
+        font-size: 26px;
+        margin-bottom: 20px;
+    }
+
+    .news-item {
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .news-date {
+        min-width: auto;
+    }
+
+    .publications-section {
+        padding: 40px 20px;
+    }
+
+    .publication-title {
+        font-size: 17px;
+    }
+
+    .bibtex {
+        font-size: 11px;
+        white-space: pre-wrap;
+        word-break: break-all;
+    }
+}
+
+@media (max-width: 480px) {
+    .banner {
+        height: 30vh;
+        min-height: 220px;
+    }
+
+    .banner-title h1 {
+        font-size: 24px;
+    }
+
+    .signature {
+        width: 220px;
+    }
+
+    .signature text {
+        font-size: 120px;
+    }
+
+    .banner-subtitle {
+        font-size: 14px;
+    }
+
+    .photo {
+        width: 70vw;
+        height: 70vw;
+    }
+
+    .about-links {
+        gap: 16px;
+    }
+}

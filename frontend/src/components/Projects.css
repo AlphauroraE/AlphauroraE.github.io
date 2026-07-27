@@ -16,7 +16,13 @@
 }
 
 @media (max-width: 680px) {
+    .project-page {
+        padding: 100px 15px 30px;
+    }
+
     .project-grid {
-        grid-template-columns: repeat(1, 300px);
+        grid-template-columns: 1fr;
+        max-width: 320px;
+        gap: 50px 0;
     }
 }

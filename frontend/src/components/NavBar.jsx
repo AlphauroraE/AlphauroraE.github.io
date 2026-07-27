@@ -4,6 +4,7 @@ import './NavBar.css';
 
 const NavBar = ({ animate = false }) => {
     const [showNav, setShowNav] = useState(!animate);
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     useEffect(() => {
         if (animate) {
@@ -11,6 +12,23 @@ const NavBar = ({ animate = false }) => {
             return () => clearTimeout(timer);
         }
     }, [animate]);
+
+    // Close mobile menu when clicking a link
+    const handleLinkClick = () => {
+        setMobileMenuOpen(false);
+    };
+
+    // Prevent body scroll when mobile menu is open
+    useEffect(() => {
+        if (mobileMenuOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+        return () => {
+            document.body.style.overflow = '';
+        };
+    }, [mobileMenuOpen]);
 
     const words = [
         { text: 'Home', to: '/' },
@@ -25,7 +43,17 @@ const NavBar = ({ animate = false }) => {
 
     return (
         <div className="navbar">
-            <div className={`nav-links ${animate ? 'with-animation' : ''} ${showNav ? 'animate-words' : ''}`}>
+            <button
+                className={`hamburger ${mobileMenuOpen ? 'open' : ''}`}
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                aria-label="Toggle navigation menu"
+                aria-expanded={mobileMenuOpen}
+            >
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div className={`nav-links ${animate ? 'with-animation' : ''} ${showNav ? 'animate-words' : ''} ${mobileMenuOpen ? 'mobile-open' : ''}`}>
                 {words.map((word, index) => {
                     const currentDelay = cumulativeDelay;
                     if (!word.hidden) {
@@ -37,6 +65,7 @@ const NavBar = ({ animate = false }) => {
                             to={word.to}
                             className={`nav-link-animated ${word.hidden ? 'nav-link-hidden' : ''}`}
                             style={{ '--word-delay': `${currentDelay}s` }}
+                            onClick={handleLinkClick}
                         >
                             {word.text}
                         </Link>

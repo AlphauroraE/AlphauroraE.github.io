@@ -45,3 +45,17 @@
     object-fit: contain;
     border-radius: 4px;
 }
+
+/* Mobile responsiveness */
+@media (max-width: 680px) {
+    .polaroid {
+        width: 100%;
+        max-width: 300px;
+        padding: 15px;
+    }
+
+    .label {
+        margin-top: 18px;
+        font-size: 14px;
+    }
+}
