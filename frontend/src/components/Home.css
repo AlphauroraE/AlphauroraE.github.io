@@ -536,17 +536,21 @@ h1 {
         min-height: 250px;
     }
 
+    .banner-title {
+        padding-left: 70px;
+    }
+
     .banner-title h1 {
-        font-size: 28px;
+        font-size: 32px;
     }
 
     .signature {
-        width: 280px;
+        width: 320px;
         max-width: 70vw;
     }
 
     .signature text {
-        font-size: 140px;
+        font-size: 160px;
     }
 
     .banner-subtitle {
@@ -558,7 +562,7 @@ h1 {
     .content-container {
         flex-direction: column-reverse;
         padding: 30px 20px;
-        gap: 30px;
+        gap: 25px;
     }
 
     .about-me {
@@ -576,10 +580,10 @@ h1 {
     }
 
     .photo {
-        width: 60vw;
-        height: 60vw;
-        max-width: 280px;
-        max-height: 280px;
+        width: 45vw;
+        height: 45vw;
+        max-width: 200px;
+        max-height: 200px;
     }
 
     .carousel-btn {
@@ -654,15 +658,15 @@ h1 {
     }
 
     .banner-title h1 {
-        font-size: 24px;
+        font-size: 28px;
     }
 
     .signature {
-        width: 220px;
+        width: 260px;
     }
 
     .signature text {
-        font-size: 120px;
+        font-size: 140px;
     }
 
     .banner-subtitle {
@@ -670,8 +674,10 @@ h1 {
     }
 
     .photo {
-        width: 70vw;
-        height: 70vw;
+        width: 50vw;
+        height: 50vw;
+        max-width: 180px;
+        max-height: 180px;
     }
 
     .about-links {
