@@ -13,9 +13,12 @@ import ProjectsGallery from './components/ProjectsGallery';
 // const apiBase = process.env.REACT_APP_API_URL || '';
 
 function HomePage() {
+  // Only animate on first visit of the session
+  const shouldAnimate = sessionStorage.getItem('hasVisitedHome') !== 'true';
+
   return (
     <div>
-      <NavBar animate />
+      <NavBar animate={shouldAnimate} />
       <Home />
       <Bottom />
     </div>

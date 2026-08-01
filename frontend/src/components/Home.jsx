@@ -58,15 +58,26 @@ const PUBLICATIONS = [
 
 const Home = () => {
     const [openCiteIndex, setOpenCiteIndex] = useState(null);
-    const [showHi, setShowHi] = useState(false);
-    const [showIm, setShowIm] = useState(false);
-    const [showJoanne, setShowJoanne] = useState(false);
-    const [showSubtitle, setShowSubtitle] = useState(false);
-    const [showContent, setShowContent] = useState(false);
+
+    // Check if this is the first visit (animations should only play once per session)
+    const hasVisited = sessionStorage.getItem('hasVisitedHome');
+    const skipAnimations = hasVisited === 'true';
+
+    const [showHi, setShowHi] = useState(skipAnimations);
+    const [showIm, setShowIm] = useState(skipAnimations);
+    const [showJoanne, setShowJoanne] = useState(skipAnimations);
+    const [showSubtitle, setShowSubtitle] = useState(skipAnimations);
+    const [showContent, setShowContent] = useState(skipAnimations);
     const [carouselIndex, setCarouselIndex] = useState(0);
     const intervalRef = useRef(null);
 
     useEffect(() => {
+        // If already visited, skip animations
+        if (skipAnimations) return;
+
+        // Mark as visited for future navigations
+        sessionStorage.setItem('hasVisitedHome', 'true');
+
         const hiTimer = setTimeout(() => setShowHi(true), 500);
         const imTimer = setTimeout(() => setShowIm(true), 1150);
         const joanneTimer = setTimeout(() => setShowJoanne(true), 1650);
