@@ -25,3 +25,23 @@ NavBar (NavBar.jsx + NavBar.css)
   Global Styles (index.css + NavBar.css)                                                                                                                         
   - Added 480px breakpoint for smallest screens                                                                                                                  
   - Footer spacing adjusted for mobile  
+
+
+### Publication Page:
+
+Visual Design:                                                                                                                                                 
+  - Deep purple/navy gradient background with subtle star particles                                                                                              
+  - Cards with glassmorphism effect (semi-transparent with blur)                                                                                                 
+  - Purple glow effect on hover with a slight lift animation                                                                                                     
+                                                                                                                                                                 
+  Features:                                                                                                                                                      
+  - Publication type badges (Conference Paper, Poster)                                                                                                           
+  - Expandable abstracts with fade-in animation                                                                                                                  
+  - Copy BibTeX button with "Copied!" feedback                                                                                                                   
+  - DOI link button                                                                                                                                              
+  - Clickable titles linking to the paper                                                                                                                        
+                                                                                                                                                                 
+  Responsive: Adapts nicely to mobile screens                                                                                                                    
+                                                                                                                                                                 
+  Note: I added placeholder abstracts since they weren't in the home page data. You can update them with the actual abstracts from your papers. The page is at   
+  /publications based on your existing routing.    
