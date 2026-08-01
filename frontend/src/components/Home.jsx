@@ -165,9 +165,9 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-            <div className="news-section">
-                <h2 className={`fade-up ${showContent ? 'visible' : ''}`}>News</h2>
-                <div className="news-content">
+            <div className="news-and-carousel">
+                <div className="news-section">
+                    <h2 className={`fade-up ${showContent ? 'visible' : ''}`}>News</h2>
                     <ul className={`news-list fade-up ${showContent ? 'visible' : ''}`}>
                         <li className="news-item">
                             <span className="news-date">June 2026</span>
@@ -190,49 +190,49 @@ const Home = () => {
                             <span className="news-text">Started PhD at Virginia Tech.</span>
                         </li>
                     </ul>
-                    <div className={`news-carousel-container fade-up ${showContent ? 'visible' : ''}`}>
-                        <div className="news-carousel-wrapper">
-                            {NEWS_CAROUSEL_IMAGES.length > 1 && (
-                                <button className="carousel-btn carousel-btn-left" onClick={prevImage} aria-label="Previous image">
-                                    &#8249;
-                                </button>
-                            )}
-                            <div className="news-carousel">
-                                {NEWS_CAROUSEL_IMAGES.map((image, index) => (
-                                    <img
-                                        key={index}
-                                        src={image.src}
-                                        alt={image.alt}
-                                        className={`carousel-image ${index === carouselIndex ? 'active' : ''}`}
-                                        style={{
-                                            ...(image.position && { objectPosition: image.position }),
-                                            ...(image.fit && { objectFit: image.fit })
-                                        }}
-                                    />
-                                ))}
-                            </div>
-                            {NEWS_CAROUSEL_IMAGES.length > 1 && (
-                                <button className="carousel-btn carousel-btn-right" onClick={nextImage} aria-label="Next image">
-                                    &#8250;
-                                </button>
-                            )}
+                </div>
+                <div className={`gallery-carousel-container fade-up ${showContent ? 'visible' : ''}`}>
+                    <div className="gallery-carousel-wrapper">
+                        {NEWS_CAROUSEL_IMAGES.length > 1 && (
+                            <button className="carousel-btn carousel-btn-left" onClick={prevImage} aria-label="Previous image">
+                                &#8249;
+                            </button>
+                        )}
+                        <div className="gallery-carousel">
+                            {NEWS_CAROUSEL_IMAGES.map((image, index) => (
+                                <img
+                                    key={index}
+                                    src={image.src}
+                                    alt={image.alt}
+                                    className={`carousel-image ${index === carouselIndex ? 'active' : ''}`}
+                                    style={{
+                                        ...(image.position && { objectPosition: image.position }),
+                                        ...(image.fit && { objectFit: image.fit })
+                                    }}
+                                />
+                            ))}
                         </div>
                         {NEWS_CAROUSEL_IMAGES.length > 1 && (
-                            <div className="carousel-dots">
-                                {NEWS_CAROUSEL_IMAGES.map((_, index) => (
-                                    <button
-                                        key={index}
-                                        className={`carousel-dot ${index === carouselIndex ? 'active' : ''}`}
-                                        onClick={() => {
-                                            setCarouselIndex(index);
-                                            startAutoRotate();
-                                        }}
-                                        aria-label={`Go to image ${index + 1}`}
-                                    />
-                                ))}
-                            </div>
+                            <button className="carousel-btn carousel-btn-right" onClick={nextImage} aria-label="Next image">
+                                &#8250;
+                            </button>
                         )}
                     </div>
+                    {NEWS_CAROUSEL_IMAGES.length > 1 && (
+                        <div className="carousel-dots">
+                            {NEWS_CAROUSEL_IMAGES.map((_, index) => (
+                                <button
+                                    key={index}
+                                    className={`carousel-dot ${index === carouselIndex ? 'active' : ''}`}
+                                    onClick={() => {
+                                        setCarouselIndex(index);
+                                        startAutoRotate();
+                                    }}
+                                    aria-label={`Go to image ${index + 1}`}
+                                />
+                            ))}
+                        </div>
+                    )}
                 </div>
             </div>
             <div className="publications-section">
