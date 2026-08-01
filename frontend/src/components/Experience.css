@@ -19,9 +19,9 @@
 /* Cloud shapes */
 .cloud {
     position: absolute;
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.25);
     border-radius: 50%;
-    filter: blur(40px);
+    filter: blur(30px);
     pointer-events: none;
 }
 
