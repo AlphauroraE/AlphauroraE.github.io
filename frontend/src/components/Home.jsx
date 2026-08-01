@@ -3,20 +3,25 @@ import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import './Home.css';
 import profile from '../images/profile.jpg';
 import pyth_workshop from '../images/Me_Teaching_Python.jpg';
-import research_workshop from '../images/Research_Workshop_Behind.JPG';
+import research_workshop_back from '../images/Research_Workshop_Behind.JPG';
 import coffee_chat from '../images/Coffee_Chat.JPG';
+import kh_research from '../images/Intro_to_Research.JPG';
+import research_workshop_front from '../images/Research_Workshop_Front.JPG';
 
 import Bottom from './Bottom';
 
-// Carousel images - add more images here
+// News carousel images (excluding profile)
 // Optional 'position' field controls which part of the image is shown (default: 'center')
 // Examples: 'top', 'bottom', 'left', 'right', 'center top', '50% 25%'
-const CAROUSEL_IMAGES = [
-    { src: profile, alt: "Joanne's Profile", position: "50% 55%" },
+const NEWS_CAROUSEL_IMAGES = [
     { src: coffee_chat, alt: "Joanne at Coffee Chat", position: '80% 60%'},
-    { src: research_workshop, alt: "Joanne Teaching Research Workshop", position: "45% 40%" },
+    { src: research_workshop_back, alt: "Joanne Teaching Research Workshop", position: "45% 40%" },
+    { src: research_workshop_front, alt: "Joanne Teaching Research Workshop"},
+    { src: kh_research, alt: "Joanne at Intro to Research"},
     { src: pyth_workshop, alt: "Joanne Teaching Python" },
 ];
+
+// { src: kh_research, alt: "Joanne at Intro to Research", fit: 'contain' },
 
 const PUBLICATIONS = [
     {
@@ -77,12 +82,12 @@ const Home = () => {
         };
     }, []);
 
-    // Auto-rotate carousel
+    // Auto-rotate news carousel
     const startAutoRotate = useCallback(() => {
-        if (CAROUSEL_IMAGES.length <= 1) return;
+        if (NEWS_CAROUSEL_IMAGES.length <= 1) return;
         if (intervalRef.current) clearInterval(intervalRef.current);
         intervalRef.current = setInterval(() => {
-            setCarouselIndex((prev) => (prev + 1) % CAROUSEL_IMAGES.length);
+            setCarouselIndex((prev) => (prev + 1) % NEWS_CAROUSEL_IMAGES.length);
         }, 4000);
     }, []);
 
@@ -98,12 +103,12 @@ const Home = () => {
     };
 
     const prevImage = () => {
-        setCarouselIndex((prev) => (prev - 1 + CAROUSEL_IMAGES.length) % CAROUSEL_IMAGES.length);
+        setCarouselIndex((prev) => (prev - 1 + NEWS_CAROUSEL_IMAGES.length) % NEWS_CAROUSEL_IMAGES.length);
         startAutoRotate(); // Reset timer after manual navigation
     };
 
     const nextImage = () => {
-        setCarouselIndex((prev) => (prev + 1) % CAROUSEL_IMAGES.length);
+        setCarouselIndex((prev) => (prev + 1) % NEWS_CAROUSEL_IMAGES.length);
         startAutoRotate(); // Reset timer after manual navigation
     };
 
@@ -155,58 +160,80 @@ const Home = () => {
                     </div>
                 </div>
                 <div className={`photo-container fade-up ${showContent ? 'visible' : ''}`}>
-                    {CAROUSEL_IMAGES.length > 1 && (
-                        <button className="carousel-btn carousel-btn-left" onClick={prevImage} aria-label="Previous image">
-                            &#8249;
-                        </button>
-                    )}
                     <div className="photo">
-                        {/* Original single image (commented out):
-                        <img src={profile} alt="Joanne's Profile" />
-                        */}
-                        <div className="carousel">
-                            {CAROUSEL_IMAGES.map((image, index) => (
-                                <img
-                                    key={index}
-                                    src={image.src}
-                                    alt={image.alt}
-                                    className={`carousel-image ${index === carouselIndex ? 'active' : ''}`}
-                                    style={image.position ? { objectPosition: image.position } : undefined}
-                                />
-                            ))}
-                        </div>
+                        <img src={profile} alt="Joanne's Profile" style={{ objectPosition: '50% 55%' }} />
                     </div>
-                    {CAROUSEL_IMAGES.length > 1 && (
-                        <button className="carousel-btn carousel-btn-right" onClick={nextImage} aria-label="Next image">
-                            &#8250;
-                        </button>
-                    )}
                 </div>
             </div>
             <div className="news-section">
                 <h2 className={`fade-up ${showContent ? 'visible' : ''}`}>News</h2>
-                <ul className={`news-list fade-up ${showContent ? 'visible' : ''}`}>
-                    <li className="news-item">
-                        <span className="news-date">June 2026</span>
-                        <span className="news-text">FutureHCI Workshop Paper Accepted.</span>
-                    </li>
-                    <li className="news-item">
-                        <span className="news-date">April 2026</span>
-                        <span className="news-text">Presented at the CHCI Student Research Symposium.</span>
-                    </li>
-                    <li className="news-item">
-                        <span className="news-date">April 2026</span>
-                        <span className="news-text">Hosted the inaugural iXR Ideathon.</span>
-                    </li>
-                    <li className="news-item">
-                        <span className="news-date">January 2026</span>
-                        <span className="news-text">Became Vice President of the Center for Human-Computer Interaction (CHCI) Student Council.</span>
-                    </li>
-                    <li className="news-item">
-                        <span className="news-date">August 2025</span>
-                        <span className="news-text">Started PhD at Virginia Tech.</span>
-                    </li>
-                </ul>
+                <div className="news-content">
+                    <ul className={`news-list fade-up ${showContent ? 'visible' : ''}`}>
+                        <li className="news-item">
+                            <span className="news-date">June 2026</span>
+                            <span className="news-text">FutureHCI Workshop Paper Accepted.</span>
+                        </li>
+                        <li className="news-item">
+                            <span className="news-date">April 2026</span>
+                            <span className="news-text">Presented at the CHCI Student Research Symposium.</span>
+                        </li>
+                        <li className="news-item">
+                            <span className="news-date">April 2026</span>
+                            <span className="news-text">Hosted the inaugural iXR Ideathon.</span>
+                        </li>
+                        <li className="news-item">
+                            <span className="news-date">January 2026</span>
+                            <span className="news-text">Became Vice President of the Center for Human-Computer Interaction (CHCI) Student Council.</span>
+                        </li>
+                        <li className="news-item">
+                            <span className="news-date">August 2025</span>
+                            <span className="news-text">Started PhD at Virginia Tech.</span>
+                        </li>
+                    </ul>
+                    <div className={`news-carousel-container fade-up ${showContent ? 'visible' : ''}`}>
+                        <div className="news-carousel-wrapper">
+                            {NEWS_CAROUSEL_IMAGES.length > 1 && (
+                                <button className="carousel-btn carousel-btn-left" onClick={prevImage} aria-label="Previous image">
+                                    &#8249;
+                                </button>
+                            )}
+                            <div className="news-carousel">
+                                {NEWS_CAROUSEL_IMAGES.map((image, index) => (
+                                    <img
+                                        key={index}
+                                        src={image.src}
+                                        alt={image.alt}
+                                        className={`carousel-image ${index === carouselIndex ? 'active' : ''}`}
+                                        style={{
+                                            ...(image.position && { objectPosition: image.position }),
+                                            ...(image.fit && { objectFit: image.fit })
+                                        }}
+                                    />
+                                ))}
+                            </div>
+                            {NEWS_CAROUSEL_IMAGES.length > 1 && (
+                                <button className="carousel-btn carousel-btn-right" onClick={nextImage} aria-label="Next image">
+                                    &#8250;
+                                </button>
+                            )}
+                        </div>
+                        {NEWS_CAROUSEL_IMAGES.length > 1 && (
+                            <div className="carousel-dots">
+                                {NEWS_CAROUSEL_IMAGES.map((_, index) => (
+                                    <button
+                                        key={index}
+                                        className={`carousel-dot ${index === carouselIndex ? 'active' : ''}`}
+                                        onClick={() => {
+                                            setCarouselIndex(index);
+                                            startAutoRotate();
+                                        }}
+                                        aria-label={`Go to image ${index + 1}`}
+                                    />
+                                ))}
+                            </div>
+                        )}
+                    </div>
+                </div>
             </div>
             <div className="publications-section">
                 <h2 className={`fade-up ${showContent ? 'visible' : ''}`}>Publications</h2>
