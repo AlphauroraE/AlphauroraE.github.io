@@ -297,18 +297,35 @@ h1 {
 
 /* Carousel button styles */
 .carousel-btn {
-    background: none;
-    border: none;
-    color: #555;
-    font-size: 48px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #fff;
+    border: 1px solid #e0e0e0;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
     padding: 0;
-    line-height: 1;
-    transition: color 0.3s ease;
+    flex-shrink: 0;
 }
 
 .carousel-btn:hover {
-    color: #dc708f;
+    background: #dc708f;
+    border-color: #dc708f;
+}
+
+.carousel-btn svg {
+    width: 16px;
+    height: 16px;
+    stroke: #555;
+    stroke-width: 2;
+    fill: none;
+}
+
+.carousel-btn:hover svg {
+    stroke: #fff;
 }
 
 /* News and carousel layout */
@@ -326,7 +343,7 @@ h1 {
     gap: 15px;
     flex: 1;
     justify-content: center;
-    margin-left: 70px;
+    margin-left: 40px;
 }
 
 .gallery-carousel-wrapper {
@@ -361,7 +378,13 @@ h1 {
 }
 
 .gallery-carousel-container .carousel-btn {
-    font-size: 40px;
+    width: 38px;
+    height: 38px;
+}
+
+.gallery-carousel-container .carousel-btn svg {
+    width: 16px;
+    height: 16px;
 }
 
 .carousel-dots {
@@ -590,7 +613,13 @@ h1 {
     }
 
     .carousel-btn {
-        font-size: 36px;
+        width: 32px;
+        height: 32px;
+    }
+
+    .carousel-btn svg {
+        width: 14px;
+        height: 14px;
     }
 
     .news-and-carousel {
@@ -612,7 +641,13 @@ h1 {
     }
 
     .gallery-carousel-container .carousel-btn {
-        font-size: 32px;
+        width: 34px;
+        height: 34px;
+    }
+
+    .gallery-carousel-container .carousel-btn svg {
+        width: 14px;
+        height: 14px;
     }
 
     .carousel-dots {
@@ -693,10 +728,16 @@ h1 {
     }
 
     .gallery-carousel-container .carousel-btn {
-        font-size: 28px;
+        width: 30px;
+        height: 30px;
+    }
+
+    .gallery-carousel-container .carousel-btn svg {
+        width: 12px;
+        height: 12px;
     }
 
     .gallery-carousel-wrapper {
-        gap: 12px;
+        gap: 10px;
     }
 }

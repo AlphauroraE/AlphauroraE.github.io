@@ -206,7 +206,9 @@ const Home = () => {
                     <div className="gallery-carousel-wrapper">
                         {NEWS_CAROUSEL_IMAGES.length > 1 && (
                             <button className="carousel-btn carousel-btn-left" onClick={prevImage} aria-label="Previous image">
-                                &#8249;
+                                <svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="M19 12H5M12 19l-7-7 7-7" />
+                                </svg>
                             </button>
                         )}
                         <div className="gallery-carousel">
@@ -225,7 +227,9 @@ const Home = () => {
                         </div>
                         {NEWS_CAROUSEL_IMAGES.length > 1 && (
                             <button className="carousel-btn carousel-btn-right" onClick={nextImage} aria-label="Next image">
-                                &#8250;
+                                <svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="M5 12h14M12 5l7 7-7 7" />
+                                </svg>
                             </button>
                         )}
                     </div>
