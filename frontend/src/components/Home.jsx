@@ -5,7 +5,7 @@ import profile from '../images/profile.jpg';
 import pyth_workshop from '../images/Me_Teaching_Python.jpg';
 import research_workshop_back from '../images/Research_Workshop_Behind.JPG';
 import coffee_chat from '../images/Coffee_Chat.JPG';
-import kh_research from '../images/Intro_to_Research.JPG';
+import kh_research from '../images/Intro_to_Research.jpg';
 import research_workshop_front from '../images/Research_Workshop_Front.JPG';
 
 import Bottom from './Bottom';
