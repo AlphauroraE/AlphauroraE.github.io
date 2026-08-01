@@ -35,7 +35,7 @@ const NavBar = ({ animate = false }) => {
         { text: 'Projects', to: '/projects', hidden: true },
         { text: 'Experience', to: '/experience' },
         { text: 'Publications', to: '/publications' },
-        { text: 'Photography', to: '/photography' }
+        { text: 'Photography', to: '/photography', hidden: true },
     ];
 
     const wordDuration = 0.2; // seconds per word reveal
