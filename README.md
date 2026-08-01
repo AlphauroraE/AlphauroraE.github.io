@@ -45,3 +45,29 @@ Visual Design:
                                                                                                                                                                  
   Note: I added placeholder abstracts since they weren't in the home page data. You can update them with the actual abstracts from your papers. The page is at   
   /publications based on your existing routing.    
+
+### Experience Page:
+Visual Design:                                                                                                                                                 
+  - Dusk gradient background (warm pink/rose transitioning to dusty purple)                                                                                      
+  - Floating cloud shapes with gentle animation                                                                                                                  
+  - Glassmorphism cards with soft shadows                                                                                                                        
+  - Warm pink glow effect on hover                                                                                                                               
+                                                                                                                                                                 
+  Structure:                                                                                                                                                     
+  - Horizontal timeline at the top showing key milestones (2021-2026)                                                                                            
+  - Stacked sections with icons: Education, Research, Teaching & Mentorship, Leadership, Skills                                                                  
+  - Expandable cards with chevron indicator that rotates when expanded                                                                                           
+                                                                                                                                                                 
+  Content (placeholder - update as needed):                                                                                                                      
+  - Education: PhD at VT, BS at UCF                                                                                                                              
+  - Research: Xrai Lab GRA, UCF undergrad research                                                                                                               
+  - Teaching: Python workshops, research workshop facilitator                                                                                                    
+  - Leadership: CHCI VP, iXR Ideathon organizer                                                                                                                  
+  - Skills: Programming, ML/AI, VR/XR, Tools categories with tags                                                                                                
+                                                                                                                                                                 
+  Interactive Elements:                                                                                                                                          
+  - Click any card to expand/collapse the description                                                                                                            
+  - Smooth fade-in animation for descriptions                                                                                                                    
+  - Hover effects with glow and lift on all cards and skill tags                                                                                                 
+                                                                                                                                                                 
+  The page is mobile responsive with the timeline adapting to a grid layout on smaller screens.
