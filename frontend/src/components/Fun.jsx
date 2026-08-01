@@ -1,84 +1,72 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState, useEffect } from "react";
 import './Fun.css';
 
-const BUILDINGS = [
-    { width: 70, height: 47 },
-    { width: 50, height: 68 },
-    { width: 90, height: 37 },
-    { width: 60, height: 84, spire: true },
-    { width: 80, height: 53 },
-    { width: 55, height: 100, tiered: true },
-    { width: 75, height: 42 },
-    { width: 65, height: 63 },
-    { width: 100, height: 32 },
-    { width: 50, height: 79 },
-    { width: 85, height: 47 },
-    { width: 60, height: 68 },
-    { width: 70, height: 89, spire: true },
-    { width: 90, height: 40 },
-    { width: 55, height: 58 },
-    { width: 80, height: 74 },
-    { width: 65, height: 45 },
-    { width: 95, height: 53 },
+// Placeholder photos - replace with your actual photos
+// Each photo needs: src, alt, caption (optional), and aspect ratio hint for masonry
+const PHOTOS = [
+    {
+        src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800',
+        alt: 'Mountain landscape',
+        caption: 'Chasing sunrises',
+    },
+    {
+        src: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=800',
+        alt: 'Starry mountain',
+        caption: 'Under the stars',
+    },
+    {
+        src: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800',
+        alt: 'Forest path',
+        caption: 'Finding peace in nature',
+    },
+    {
+        src: 'https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=800',
+        alt: 'Autumn forest',
+        caption: 'Fall colors',
+    },
+    {
+        src: 'https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=800',
+        alt: 'Waterfall',
+        caption: 'Peaceful moments',
+    },
+    {
+        src: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800',
+        alt: 'Foggy mountains',
+        caption: 'Morning mist',
+    },
 ];
 
 const SKY_HEIGHT = 400;
-const TOTAL_WIDTH = BUILDINGS.reduce((sum, b) => sum + b.width, 0);
-const WINDOW_SIZE = 3;
-const WINDOW_GAP = 3;
-const WINDOW_LIT_CHANCE = 0.35;
+const TOTAL_WIDTH = 1400;
 const SHOOTING_STAR_COUNT = 7;
 
-function buildWindows(offsetX, offsetY, width, height) {
-    const cols = Math.floor((width - WINDOW_GAP) / (WINDOW_SIZE + WINDOW_GAP));
-    const rows = Math.floor((height - 20) / (WINDOW_SIZE + WINDOW_GAP));
-    const windows = [];
-    for (let r = 0; r < rows; r++) {
-        for (let c = 0; c < cols; c++) {
-            if (Math.random() < WINDOW_LIT_CHANCE) {
-                windows.push({
-                    x: offsetX + WINDOW_GAP + c * (WINDOW_SIZE + WINDOW_GAP),
-                    y: offsetY + 10 + r * (WINDOW_SIZE + WINDOW_GAP),
-                });
-            }
-        }
-    }
-    return windows;
-}
-
 const Fun = () => {
-    // City skyline temporarily disabled:
-    // const { buildings, windows } = useMemo(() => {
-    //     let x = 0;
-    //     const buildings = [];
-    //     const windows = [];
-    //     BUILDINGS.forEach((b) => {
-    //         const y = SKY_HEIGHT - b.height;
-    //         buildings.push({ ...b, x, y });
-    //         windows.push(...buildWindows(x, y, b.width, b.height));
-    //         x += b.width;
-    //     });
-    //     return { buildings, windows };
-    // }, []);
+    const [selectedPhoto, setSelectedPhoto] = useState(null);
 
+    // Generate stars with density gradient (denser at top)
     const stars = useMemo(() => (
-        Array.from({ length: 140 }).map(() => ({
-            cx: Math.random() * TOTAL_WIDTH,
-            cy: Math.random() * (SKY_HEIGHT - 60),
-            r: Math.random() * 0.5 + 0.15,
-        }))
+        Array.from({ length: 140 }).map(() => {
+            // Use quadratic distribution to concentrate stars at the top
+            const yRandom = Math.random();
+            const cy = yRandom * yRandom * (SKY_HEIGHT - 60);
+            return {
+                cx: Math.random() * TOTAL_WIDTH,
+                cy,
+                r: Math.random() * 0.5 + 0.15,
+                twinkle: Math.random() > 0.7, // 30% of stars twinkle
+                delay: Math.random() * 3,
+            };
+        })
     ), []);
 
     const shootingStars = useMemo(() => (
         Array.from({ length: SHOOTING_STAR_COUNT }).map(() => {
-            // Right to left, slight downward diagonal.
             const angle = (12 + Math.random() * 10) * (Math.PI / 180);
             const travel = 90 + Math.random() * 60;
             const dx = -travel * Math.cos(angle);
             const dy = travel * Math.sin(angle);
             const trailRatio = 0.65;
 
-            // Keep the whole path (start through end) clear of the display edges.
             const marginX = TOTAL_WIDTH * 0.12;
             const marginYTop = SKY_HEIGHT * 0.08;
             const usableMinX = marginX + travel;
@@ -88,12 +76,9 @@ const Fun = () => {
             const sy = marginYTop + Math.random() * Math.max(usableMaxY - marginYTop, 0);
 
             return {
-                sx,
-                sy,
+                sx, sy,
                 ex: sx + dx,
                 ey: sy + dy,
-                // Anti-parallel to the motion vector so the tail always traces
-                // the star's actual path rather than a separately guessed angle.
                 trailX: -dx * trailRatio,
                 trailY: -dy * trailRatio,
                 r: Math.random() * 0.5 + 0.15,
@@ -103,8 +88,39 @@ const Fun = () => {
         })
     ), []);
 
+    const openLightbox = (photo) => {
+        setSelectedPhoto(photo);
+        document.body.style.overflow = 'hidden';
+    };
+
+    const closeLightbox = () => {
+        setSelectedPhoto(null);
+        document.body.style.overflow = '';
+    };
+
+    const navigatePhoto = (direction) => {
+        const currentIndex = PHOTOS.findIndex(p => p.src === selectedPhoto.src);
+        const newIndex = (currentIndex + direction + PHOTOS.length) % PHOTOS.length;
+        setSelectedPhoto(PHOTOS[newIndex]);
+    };
+
+    // Close lightbox on escape key
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') navigatePhoto(-1);
+            if (e.key === 'ArrowRight') navigatePhoto(1);
+        };
+
+        if (selectedPhoto) {
+            window.addEventListener('keydown', handleKeyDown);
+            return () => window.removeEventListener('keydown', handleKeyDown);
+        }
+    }, [selectedPhoto]);
+
     return (
         <div className="fun-page">
+            {/* Star background */}
             <svg
                 className="skyline"
                 viewBox={`0 0 ${TOTAL_WIDTH} ${SKY_HEIGHT}`}
@@ -126,9 +142,21 @@ const Fun = () => {
                         </linearGradient>
                     ))}
                 </defs>
+
+                {/* Stars */}
                 {stars.map((s, i) => (
-                    <circle key={`star-${i}`} cx={s.cx} cy={s.cy} r={s.r} fill="#fff" />
+                    <circle
+                        key={`star-${i}`}
+                        cx={s.cx}
+                        cy={s.cy}
+                        r={s.r}
+                        fill="#fff"
+                        className={s.twinkle ? 'twinkle' : ''}
+                        style={s.twinkle ? { animationDelay: `${s.delay}s` } : undefined}
+                    />
                 ))}
+
+                {/* Shooting stars */}
                 {shootingStars.map((s, i) => (
                     <g key={`shooting-${i}`}>
                         <line
@@ -172,23 +200,64 @@ const Fun = () => {
                         />
                     </g>
                 ))}
-                {/* City skyline temporarily disabled:
-                {buildings.map((b, i) => (
-                    <g key={`building-${i}`}>
-                        <rect x={b.x} y={b.y} width={b.width} height={b.height} fill="#0c0c16" />
-                        {b.spire && (
-                            <rect x={b.x + b.width / 2 - 1} y={b.y - 12} width={2} height={12} fill="#0c0c16" />
-                        )}
-                        {b.tiered && (
-                            <rect x={b.x + b.width * 0.2} y={b.y - 8} width={b.width * 0.6} height={8} fill="#0c0c16" />
-                        )}
-                    </g>
-                ))}
-                {windows.map((w, i) => (
-                    <rect key={`window-${i}`} x={w.x} y={w.y} width={WINDOW_SIZE} height={WINDOW_SIZE} fill="#ffd873" opacity={0.85} />
-                ))}
-                */}
             </svg>
+
+            {/* Page content */}
+            <div className="photography-container">
+                {/* <h1 className="photography-title">Photography</h1>
+                <p className="photography-subtitle">Moments captured through my lens</p> */}
+
+                {/* Masonry grid */}
+                <div className="photo-grid">
+                    {PHOTOS.map((photo, index) => (
+                        <div
+                            key={index}
+                            className="photo-item"
+                            onClick={() => openLightbox(photo)}
+                        >
+                            <img src={photo.src} alt={photo.alt} loading="lazy" />
+                            {photo.caption && (
+                                <div className="photo-caption">
+                                    <p>{photo.caption}</p>
+                                </div>
+                            )}
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            {/* Lightbox */}
+            {selectedPhoto && (
+                <div className="lightbox" onClick={closeLightbox}>
+                    <button className="lightbox-close" onClick={closeLightbox}>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <path d="M18 6L6 18M6 6l12 12" />
+                        </svg>
+                    </button>
+                    <button
+                        className="lightbox-nav lightbox-prev"
+                        onClick={(e) => { e.stopPropagation(); navigatePhoto(-1); }}
+                    >
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <path d="M15 18l-6-6 6-6" />
+                        </svg>
+                    </button>
+                    <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
+                        <img src={selectedPhoto.src} alt={selectedPhoto.alt} />
+                        {selectedPhoto.caption && (
+                            <p className="lightbox-caption">{selectedPhoto.caption}</p>
+                        )}
+                    </div>
+                    <button
+                        className="lightbox-nav lightbox-next"
+                        onClick={(e) => { e.stopPropagation(); navigatePhoto(1); }}
+                    >
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <path d="M9 18l6-6-6-6" />
+                        </svg>
+                    </button>
+                </div>
+            )}
         </div>
     );
 };

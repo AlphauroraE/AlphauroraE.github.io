@@ -71,3 +71,30 @@ Visual Design:
   - Hover effects with glow and lift on all cards and skill tags                                                                                                 
                                                                                                                                                                  
   The page is mobile responsive with the timeline adapting to a grid layout on smaller screens.
+
+  ### Photography Page:
+
+  Star Background:                                                                                                                                               
+  - Stars are now denser at the top (using quadratic distribution)                                                                                               
+  - 30% of stars have a gentle twinkling animation                                                                                                               
+  - Parallax effect - the star background moves slower than the content as you scroll                                                                            
+  - Shooting stars preserved from your original design                                                                                                           
+                                                                                                                                                                 
+  Photo Grid:                                                                                                                                                    
+  - Masonry layout (3 columns desktop, 2 tablet, 1 mobile)                                                                                                       
+  - Photos glow white on hover                                                                                                                                   
+  - Subtle scale effect on hover                                                                                                                                 
+  - Captions appear on hover (always visible on mobile)                                                                                                          
+                                                                                                                                                                 
+  Lightbox:                                                                                                                                                      
+  - Click any photo to view full-size                                                                                                                            
+  - Navigation arrows to browse through photos                                                                                                                   
+  - Keyboard support: Escape to close, arrow keys to navigate                                                                                                    
+  - Caption displayed below the photo                                                                                                                            
+                                                                                                                                                                 
+  Placeholder Content:                                                                                                                                           
+  - I added 6 placeholder landscape photos from Unsplash with sample captions                                                                                    
+  - Replace the PHOTOS array with your actual images when ready                                                                                                  
+                                                                                                                                                                 
+  The page reflects more personality with the dreamy night sky aesthetic. You can add your own photos by updating the PHOTOS array in Fun.jsx with your image    
+  paths and captions. 
