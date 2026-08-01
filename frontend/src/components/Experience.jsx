@@ -74,7 +74,7 @@ const LEADERSHIP = [
 const SKILLS = {
     'Programming': ['Python', 'Java', 'C'],
     'ML/AI': ['Scikit-Learn', 'Pandas', 'NumPy', 'PyTorch'],
-    'VR/XR': ['Unity'],
+    'VR/AR': ['Unity'],
     'Tools': ['Git', 'LaTeX', 'Jupyter Notebook'],
 };
 
