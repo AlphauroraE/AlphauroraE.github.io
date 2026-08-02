@@ -74,11 +74,11 @@ const CASSETTES = [
     },
 ];
 
-// Calculate embed height based on track count (header ~152px + ~56px per track, max 700px)
+// Calculate embed height based on track count (header ~200px + ~64px per track, max 800px)
 const getEmbedHeight = (trackCount) => {
-    const baseHeight = 152;
-    const perTrackHeight = 56;
-    const maxHeight = 700;
+    const baseHeight = 200;
+    const perTrackHeight = 64;
+    const maxHeight = 800;
     return Math.min(baseHeight + (trackCount * perTrackHeight), maxHeight);
 };
 
@@ -98,43 +98,41 @@ const Cassette = ({ cassette, isSelected, isInPlayer, onClick, side }) => {
                     style={{ backgroundImage: `url(${cassette.imageUrl})` }}
                 />
             )}
-            <div className="cassette-body">
-                <div className="cassette-top-edge">
-                    <div className="cassette-hole"></div>
-                    <div className="cassette-hole"></div>
-                    <div className="cassette-hole"></div>
-                    <div className="cassette-hole"></div>
-                    <div className="cassette-hole"></div>
-                </div>
+            <div className="cassette-frame">
+                <div className="cassette-screw top-left"></div>
+                <div className="cassette-screw top-right"></div>
+                <div className="cassette-screw bottom-left"></div>
+                <div className="cassette-screw bottom-right"></div>
+
                 <div
-                    className={`cassette-label ${cassette.imageUrl ? 'has-image' : ''}`}
+                    className="cassette-body"
                     style={cassette.imageUrl ? { backgroundImage: `url(${cassette.imageUrl})` } : {}}
                 >
-                    <div className="cassette-label-inner">
+                    {/* Title label strip */}
+                    <div className="cassette-title-strip">
                         <span className="cassette-title">{cassette.name}</span>
                     </div>
-                </div>
-                <div className="cassette-window">
-                    <div className="cassette-reel left-reel">
-                        <div className="reel-center"></div>
-                        <div className="reel-spoke"></div>
-                        <div className="reel-spoke"></div>
-                        <div className="reel-spoke"></div>
+
+                    {/* Reel window */}
+                    <div className="cassette-window">
+                        <div className="cassette-reel left-reel">
+                            <div className="reel-center"></div>
+                            <div className="reel-spoke"></div>
+                            <div className="reel-spoke"></div>
+                            <div className="reel-spoke"></div>
+                        </div>
+                        <div className="cassette-tape-area">
+                            <div className="tape-guide"></div>
+                            <div className="tape-guide"></div>
+                            <div className="tape-guide"></div>
+                        </div>
+                        <div className="cassette-reel right-reel">
+                            <div className="reel-center"></div>
+                            <div className="reel-spoke"></div>
+                            <div className="reel-spoke"></div>
+                            <div className="reel-spoke"></div>
+                        </div>
                     </div>
-                    <div className="cassette-tape"></div>
-                    <div className="cassette-reel right-reel">
-                        <div className="reel-center"></div>
-                        <div className="reel-spoke"></div>
-                        <div className="reel-spoke"></div>
-                        <div className="reel-spoke"></div>
-                    </div>
-                </div>
-                <div className="cassette-bottom">
-                    <div className="cassette-grip"></div>
-                    <div className="cassette-grip"></div>
-                    <div className="cassette-grip"></div>
-                    <div className="cassette-grip"></div>
-                    <div className="cassette-grip"></div>
                 </div>
             </div>
         </div>
@@ -188,18 +186,26 @@ const CassettePlayer = ({ currentCassette, isPlaying, isInserting, isEjecting })
                                 '--cassette-accent': currentCassette.accentColor,
                             }}
                         >
-                            <div className="deck-cassette-window">
-                                <div className={`deck-reel left ${isPlaying ? 'spinning' : ''}`}>
-                                    <div className="reel-center"></div>
-                                    <div className="reel-spoke"></div>
-                                    <div className="reel-spoke"></div>
-                                    <div className="reel-spoke"></div>
-                                </div>
-                                <div className={`deck-reel right ${isPlaying ? 'spinning' : ''}`}>
-                                    <div className="reel-center"></div>
-                                    <div className="reel-spoke"></div>
-                                    <div className="reel-spoke"></div>
-                                    <div className="reel-spoke"></div>
+                            <div className="deck-cassette-frame">
+                                <div
+                                    className="deck-cassette-body"
+                                    style={currentCassette.imageUrl ? { backgroundImage: `url(${currentCassette.imageUrl})` } : {}}
+                                >
+                                    <div className="deck-cassette-window">
+                                        <div className={`deck-reel left ${isPlaying ? 'spinning' : ''}`}>
+                                            <div className="reel-center"></div>
+                                            <div className="reel-spoke"></div>
+                                            <div className="reel-spoke"></div>
+                                            <div className="reel-spoke"></div>
+                                        </div>
+                                        <div className="deck-tape-area"></div>
+                                        <div className={`deck-reel right ${isPlaying ? 'spinning' : ''}`}>
+                                            <div className="reel-center"></div>
+                                            <div className="reel-spoke"></div>
+                                            <div className="reel-spoke"></div>
+                                            <div className="reel-spoke"></div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

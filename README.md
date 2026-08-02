@@ -199,3 +199,13 @@ Visual Design:
       accentColor: '#fd79a8',                                                                                                                                    
       imageUrl: 'https://i.scdn.co/image/ab67706f000000...', // Add URL here                                                                                     
   },  
+
+  I've redesigned the cassettes to match the reference image. The new design features:                                                                     
+                                                                                                                                                                 
+  1. Dark outer frame with corner screws (like the black border in the image)                                                                                    
+  2. Main body area with the album art as background (this is where the colored/image area is)                                                                   
+  3. White title strip at the top for the cassette name (like the label in the image)                                                                            
+  4. Reel window - a dark rounded area with the two reels visible, overlaid on the album art                                                                     
+                                                                                                                                                                 
+  The album cover now shows through as the main body background, surrounding the reel window - just like in the reference image where the red color surrounds the
+   tape mechanism.

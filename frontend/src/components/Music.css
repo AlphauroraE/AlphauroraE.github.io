@@ -104,10 +104,11 @@
 
 /* Cassette Styling */
 .cassette {
-    width: 160px;
+    width: 180px;
     cursor: pointer;
     transition: all 0.3s ease;
     transform-origin: center;
+    position: relative;
 }
 
 .cassette:hover {
@@ -146,71 +147,143 @@
     75% { transform: scale(1.05) rotate(-1deg) translateY(-5px); }
 }
 
+/* Cassette outer frame (dark border) */
+.cassette-frame {
+    background: #1a1a1a;
+    border-radius: 6px;
+    padding: 6px;
+    position: relative;
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.cassette:hover .cassette-frame {
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.6),
+        0 0 25px var(--cassette-accent),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Corner screws */
+.cassette-screw {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #333;
+    border-radius: 50%;
+    border: 1px solid #444;
+}
+
+.cassette-screw::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 4px;
+    height: 1px;
+    background: #222;
+    transform: translate(-50%, -50%);
+}
+
+.cassette-screw.top-left { top: 4px; left: 4px; }
+.cassette-screw.top-right { top: 4px; right: 4px; }
+.cassette-screw.bottom-left { bottom: 4px; left: 4px; }
+.cassette-screw.bottom-right { bottom: 4px; right: 4px; }
+
+/* Cassette body - main colored area with album art */
 .cassette-body {
     background: var(--cassette-color);
-    border-radius: 8px;
-    padding: 8px;
-    box-shadow:
-        0 4px 15px rgba(0, 0, 0, 0.4),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2);
-    border: 2px solid rgba(0, 0, 0, 0.2);
-}
-
-.cassette:hover .cassette-body {
-    box-shadow:
-        0 8px 25px rgba(0, 0, 0, 0.5),
-        0 0 20px var(--cassette-accent),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2);
-}
-
-.cassette-top-edge {
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 6px;
-}
-
-.cassette-hole {
-    width: 4px;
-    height: 4px;
-    background: rgba(0, 0, 0, 0.4);
-    border-radius: 50%;
-}
-
-.cassette-label {
-    background: rgba(255, 255, 255, 0.95);
     border-radius: 4px;
-    padding: 10px 8px;
-    margin-bottom: 8px;
-    min-height: 50px;
+    padding: 10px;
+    min-height: 100px;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    flex-direction: column;
+    gap: 8px;
     background-size: cover;
     background-position: center;
     position: relative;
-    overflow: hidden;
 }
 
-.cassette-label.has-image {
-    background-color: transparent;
+/* Title label strip at top */
+.cassette-title-strip {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 3px;
+    padding: 6px 8px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.cassette-label.has-image::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.35);
+.cassette-title {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 10px;
+    color: #222;
+    display: block;
+    text-align: center;
+    line-height: 1.3;
 }
 
-.cassette-label.has-image .cassette-label-inner {
+/* Reel window - dark area with reels */
+.cassette-window {
+    background: rgba(0, 0, 0, 0.85);
+    border-radius: 20px;
+    padding: 8px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 2px solid rgba(0, 0, 0, 0.3);
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Reels */
+.cassette-reel {
+    width: 36px;
+    height: 36px;
+    background: linear-gradient(145deg, #e0e0e0, #c0c0c0);
+    border-radius: 50%;
     position: relative;
-    z-index: 1;
+    border: 3px solid #888;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.cassette-label.has-image .cassette-title {
-    color: #fff;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+.reel-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 14px;
+    height: 14px;
+    background: #333;
+    border-radius: 50%;
+    border: 2px solid #555;
+}
+
+.reel-spoke {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 2px;
+    height: 14px;
+    background: #666;
+    transform-origin: center top;
+}
+
+.reel-spoke:nth-child(2) { transform: translate(-50%, 0) rotate(0deg); }
+.reel-spoke:nth-child(3) { transform: translate(-50%, 0) rotate(120deg); }
+.reel-spoke:nth-child(4) { transform: translate(-50%, 0) rotate(240deg); }
+
+/* Tape area between reels */
+.cassette-tape-area {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    flex: 1;
+    padding: 0 6px;
+}
+
+.tape-guide {
+    height: 2px;
+    background: #444;
+    border-radius: 1px;
 }
 
 /* Album art hover preview */
@@ -261,97 +334,6 @@
 .cassette.selected .album-preview,
 .cassette.in-player .album-preview {
     display: none;
-}
-
-.cassette-label-inner {
-    text-align: center;
-}
-
-.cassette-title {
-    font-family: 'Permanent Marker', cursive;
-    font-size: 11px;
-    color: #333;
-    display: block;
-    line-height: 1.3;
-}
-
-.cassette-type {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 6px;
-    color: #888;
-    display: block;
-    margin-top: 4px;
-    letter-spacing: 1px;
-}
-
-.cassette-window {
-    background: rgba(0, 0, 0, 0.6);
-    border-radius: 4px;
-    padding: 8px 12px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: relative;
-}
-
-.cassette-reel {
-    width: 28px;
-    height: 28px;
-    background: #fff;
-    border-radius: 50%;
-    position: relative;
-    border: 2px solid rgba(0, 0, 0, 0.3);
-}
-
-.reel-center {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 10px;
-    height: 10px;
-    background: rgba(0, 0, 0, 0.6);
-    border-radius: 50%;
-}
-
-.reel-spoke {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 2px;
-    height: 12px;
-    background: rgba(0, 0, 0, 0.4);
-    transform-origin: center top;
-}
-
-.reel-spoke:nth-child(2) { transform: translate(-50%, 0) rotate(0deg); }
-.reel-spoke:nth-child(3) { transform: translate(-50%, 0) rotate(120deg); }
-.reel-spoke:nth-child(4) { transform: translate(-50%, 0) rotate(240deg); }
-
-.cassette-tape {
-    flex: 1;
-    height: 4px;
-    background: linear-gradient(90deg,
-        rgba(139, 90, 43, 0.8) 0%,
-        rgba(101, 67, 33, 0.9) 50%,
-        rgba(139, 90, 43, 0.8) 100%
-    );
-    margin: 0 8px;
-    border-radius: 2px;
-}
-
-.cassette-bottom {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin-top: 6px;
-}
-
-.cassette-grip {
-    width: 20px;
-    height: 3px;
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 2px;
 }
 
 /* Player Section */
@@ -494,8 +476,8 @@
 }
 
 .deck-slot {
-    width: 180px;
-    height: 60px;
+    width: 200px;
+    height: 90px;
     background: rgba(0, 0, 0, 0.8);
     border-radius: 6px;
     border: 2px dashed #444;
@@ -506,13 +488,6 @@
 }
 
 .deck-cassette {
-    width: 170px;
-    height: 50px;
-    background: var(--cassette-color);
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     animation: slideIn 0.5s ease-out;
 }
 
@@ -546,21 +521,61 @@
     }
 }
 
+/* Deck cassette frame (dark border) */
+.deck-cassette-frame {
+    background: #1a1a1a;
+    border-radius: 4px;
+    padding: 4px;
+}
+
+/* Deck cassette body with album art */
+.deck-cassette-body {
+    background: var(--cassette-color);
+    border-radius: 3px;
+    padding: 6px 8px;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .deck-cassette-window {
     display: flex;
-    gap: 40px;
-    padding: 8px 20px;
-    background: rgba(0, 0, 0, 0.5);
-    border-radius: 4px;
+    align-items: center;
+    padding: 6px 10px;
+    background: rgba(0, 0, 0, 0.85);
+    border-radius: 15px;
+    gap: 8px;
+    border: 2px solid rgba(0, 0, 0, 0.3);
+    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+.deck-tape-area {
+    width: 30px;
+    height: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    justify-content: center;
+}
+
+.deck-tape-area::before,
+.deck-tape-area::after {
+    content: '';
+    height: 2px;
+    background: #444;
+    border-radius: 1px;
 }
 
 .deck-reel {
-    width: 30px;
-    height: 30px;
-    background: #fff;
+    width: 28px;
+    height: 28px;
+    background: linear-gradient(145deg, #e0e0e0, #c0c0c0);
     border-radius: 50%;
     position: relative;
-    border: 2px solid rgba(0, 0, 0, 0.3);
+    border: 2px solid #888;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .deck-reel.spinning {
@@ -695,7 +710,12 @@
     }
 
     .cassette {
-        width: 140px;
+        width: 160px;
+    }
+
+    .cassette-reel {
+        width: 30px;
+        height: 30px;
     }
 
     .sun {
@@ -714,11 +734,16 @@
     }
 
     .cassette {
-        width: 120px;
+        width: 140px;
+    }
+
+    .cassette-reel {
+        width: 26px;
+        height: 26px;
     }
 
     .cassette-title {
-        font-size: 9px;
+        font-size: 8px;
     }
 
     .player-brand {
