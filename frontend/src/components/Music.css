@@ -186,6 +186,31 @@
     align-items: center;
     justify-content: center;
     border: 1px solid rgba(0, 0, 0, 0.1);
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.cassette-label.has-image {
+    background-color: transparent;
+}
+
+.cassette-label.has-image::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+}
+
+.cassette-label.has-image .cassette-label-inner {
+    position: relative;
+    z-index: 1;
+}
+
+.cassette-label.has-image .cassette-title {
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
 }
 
 .cassette-label-inner {

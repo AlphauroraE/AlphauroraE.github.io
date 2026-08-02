@@ -178,3 +178,24 @@ Visual Design:
   - Responsive for mobile                                                                                                                                        
                                                                                                                                                                  
   The page is at /music and added to the navbar. You'll want to replace the placeholder Spotify IDs in CASSETTES array with your actual playlist/album IDs. 
+
+
+  1. Add imageUrl to each cassette in the CASSETTES array with the album/playlist cover URL                                                                      
+  2. The image displays as the label background with a subtle dark overlay for readability                                                                       
+  3. The title text turns white with a shadow when an image is present                                                                                           
+  4. The cassette still looks like a cassette tape (body, reels, window, etc.)                                                                                   
+                                                                                                                                                                 
+  To get playlist/album cover images from Spotify:                                                                                                               
+  - Right-click on the cover in Spotify desktop → "Copy image link"                                                                                              
+  - Or screenshot/save and host the image yourself                                                                                                               
+                                                                                                                                                                 
+  Example usage:                                                                                                                                                 
+  {                                                                                                                                                              
+      id: 1,                                                                                                                                                     
+      name: 'Late Night Coding',                                                                                                                                 
+      spotifyId: '37i9dQZF1DX5trt9i14X7j',                                                                                                                       
+      type: 'playlist',                                                                                                                                          
+      color: '#e84393',                                                                                                                                          
+      accentColor: '#fd79a8',                                                                                                                                    
+      imageUrl: 'https://i.scdn.co/image/ab67706f000000...', // Add URL here                                                                                     
+  },  

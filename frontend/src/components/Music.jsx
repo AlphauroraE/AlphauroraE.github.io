@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import './Music.css';
+import welcomeToScienceFair from '../images/album_covers/Welcome_to_the_Science_Fair.png';
 
 // Cassette data - mix of playlists and albums
 // Replace spotifyId with your actual Spotify playlist/album IDs
-// type: 'playlist' or 'album'
+// Add imageUrl with the album/playlist cover image URL
 const CASSETTES = [
     {
         id: 1,
@@ -12,16 +13,16 @@ const CASSETTES = [
         type: 'playlist',
         color: '#e84393',
         accentColor: '#fd79a8',
-        labelStyle: 'pink',
+        imageUrl: '', // Add your playlist cover URL here
     },
     {
         id: 2,
-        name: 'Chill Vibes',
-        spotifyId: '37i9dQZF1DX4WYpdgoIcn6',
-        type: 'playlist',
+        name: 'Welcome to the Science Fair',
+        spotifyId: '3nMySDTDirgoV4dZHf1NC6',
+        type: 'album',
         color: '#00cec9',
         accentColor: '#81ecec',
-        labelStyle: 'teal',
+        imageUrl: welcomeToScienceFair,
     },
     {
         id: 3,
@@ -30,7 +31,7 @@ const CASSETTES = [
         type: 'playlist',
         color: '#fdcb6e',
         accentColor: '#ffeaa7',
-        labelStyle: 'yellow',
+        imageUrl: '',
     },
     {
         id: 4,
@@ -39,7 +40,7 @@ const CASSETTES = [
         type: 'playlist',
         color: '#a29bfe',
         accentColor: '#dfe6e9',
-        labelStyle: 'purple',
+        imageUrl: '',
     },
     {
         id: 5,
@@ -48,7 +49,7 @@ const CASSETTES = [
         type: 'playlist',
         color: '#ff7675',
         accentColor: '#fab1a0',
-        labelStyle: 'coral',
+        imageUrl: '',
     },
     {
         id: 6,
@@ -57,7 +58,7 @@ const CASSETTES = [
         type: 'playlist',
         color: '#55a3ff',
         accentColor: '#74b9ff',
-        labelStyle: 'blue',
+        imageUrl: '',
     },
 ];
 
@@ -79,10 +80,12 @@ const Cassette = ({ cassette, isSelected, isInPlayer, onClick, side }) => {
                     <div className="cassette-hole"></div>
                     <div className="cassette-hole"></div>
                 </div>
-                <div className="cassette-label">
+                <div
+                    className={`cassette-label ${cassette.imageUrl ? 'has-image' : ''}`}
+                    style={cassette.imageUrl ? { backgroundImage: `url(${cassette.imageUrl})` } : {}}
+                >
                     <div className="cassette-label-inner">
                         <span className="cassette-title">{cassette.name}</span>
-                        <span className="cassette-type">{cassette.type === 'playlist' ? 'MIXTAPE' : 'ALBUM'}</span>
                     </div>
                 </div>
                 <div className="cassette-window">
