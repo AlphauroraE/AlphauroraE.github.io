@@ -92,6 +92,12 @@ const Cassette = ({ cassette, isSelected, isInPlayer, onClick, side }) => {
                 '--cassette-accent': cassette.accentColor,
             }}
         >
+            {cassette.imageUrl && (
+                <div
+                    className={`album-preview album-preview-${side}`}
+                    style={{ backgroundImage: `url(${cassette.imageUrl})` }}
+                />
+            )}
             <div className="cassette-body">
                 <div className="cassette-top-edge">
                     <div className="cassette-hole"></div>
