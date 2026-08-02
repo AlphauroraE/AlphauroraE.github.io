@@ -36,6 +36,7 @@ const NavBar = ({ animate = false }) => {
         { text: 'Experience', to: '/experience' },
         { text: 'Publications', to: '/publications' },
         { text: 'Photography', to: '/photography', hidden: true },
+        { text: 'Music', to: '/music' },
     ];
 
     const wordDuration = 0.2; // seconds per word reveal

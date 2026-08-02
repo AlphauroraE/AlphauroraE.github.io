@@ -7,6 +7,7 @@ import Projects from './components/Projects';
 import Experience from './components/Experience';
 import Publications from './components/Publications';
 import Fun from './components/Fun';
+import Music from './components/Music';
 import Bottom from './components/Bottom';
 import NavBar from './components/NavBar';
 import ProjectsGallery from './components/ProjectsGallery';
@@ -75,6 +76,15 @@ function FunPage() {
   );
 }
 
+function MusicPage() {
+  return (
+    <div>
+      <NavBar />
+      <Music />
+    </div>
+  );
+}
+
 const App = () => {
   return (
     <Router>
@@ -85,6 +95,7 @@ const App = () => {
         <Route path="/experience" element={<ExperiencePage />} />
         <Route path="/publications" element={<PublicationsPage />} />
         <Route path="/photography" element={<FunPage />} />
+        <Route path="/music" element={<MusicPage />} />
       </Routes>
     </Router>
   );
