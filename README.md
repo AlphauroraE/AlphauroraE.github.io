@@ -143,3 +143,38 @@ Visual Design:
   Content Organization:                                                                                                                                          
   - Each cassette = a different mood/vibe playlist (e.g., "Late Night Coding", "Road Trip Vibes", "Chill Study")                                                 
   - Handwritten-style playlist names on the cassette labels 
+
+
+
+  Visual Design:                                                                                                                                                 
+  - Synthwave gradient background (purple to pink to orange sunset)                                                                                              
+  - Retro sun with horizontal line effect                                                                                                                        
+  - Neon glow effects on title, cassettes, and player                                                                                                            
+  - Press Start 2P retro pixel font for labels, Permanent Marker for handwritten cassette names                                                                  
+                                                                                                                                                                 
+  Cassettes:                                                                                                                                                     
+  - Styled after the reference image with colored bodies, white labels, tape windows, reels, and authentic details                                               
+  - Wiggle animation on hover                                                                                                                                    
+  - Glow effect on hover                                                                                                                                         
+  - Fade when selected/in player                                                                                                                                 
+  - Handwritten-style playlist names                                                                                                                             
+                                                                                                                                                                 
+  Cassette Player:                                                                                                                                               
+  - "RETRO SOUND RS-8000" branding                                                                                                                               
+  - Green LED display showing cassette name and status                                                                                                           
+  - Animated VU meter bars when playing                                                                                                                          
+  - Deck slot that receives cassettes with slide-in animation                                                                                                    
+  - Spinning tape reels when playing                                                                                                                             
+  - Red LED "PLAY" indicator                                                                                                                                     
+  - Eject animation when switching cassettes                                                                                                                     
+                                                                                                                                                                 
+  Spotify Integration:                                                                                                                                           
+  - Embedded playlist below the player                                                                                                                           
+  - Updates seamlessly when selecting different cassettes                                                                                                        
+                                                                                                                                                                 
+  Layout:                                                                                                                                                        
+  - Left and right cassette racks                                                                                                                                
+  - Central player section                                                                                                                                       
+  - Responsive for mobile                                                                                                                                        
+                                                                                                                                                                 
+  The page is at /music and added to the navbar. You'll want to replace the placeholder Spotify IDs in CASSETTES array with your actual playlist/album IDs. 

@@ -231,13 +231,13 @@ const Music = () => {
     const getSpotifyEmbedUrl = (cassette) => {
         if (!cassette) return '';
         const type = cassette.type === 'album' ? 'album' : 'playlist';
-        return `https://open.spotify.com/embed/${type}/${cassette.spotifyId}?utm_source=generator&theme=0`;
+        return `https://open.spotify.com/embed/${type}/${cassette.spotifyId}?utm_source=generator&theme=0&autoplay=1`;
     };
 
     return (
         <div className="music-page">
             <div className="music-background">
-                <div className="sun"></div>
+                {/* <div className="sun"></div> */}
             </div>
 
             <div className="music-content">
@@ -271,7 +271,7 @@ const Music = () => {
                                     key={selectedCassette.id}
                                     src={getSpotifyEmbedUrl(selectedCassette)}
                                     width="100%"
-                                    height="352"
+                                    height="700"
                                     frameBorder="0"
                                     allowFullScreen=""
                                     allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
