@@ -1,19 +1,26 @@
 import React, { useState, useEffect } from "react";
 import './Music.css';
 import welcomeToScienceFair from '../images/album_covers/Welcome_to_the_Science_Fair.png';
+import ofEveryone from '../images/album_covers/of_everyone_in_the_world.png';
+import ifIWereASong from '../images/album_covers/if_i_were_a_song.png';
+import baluBrigada from '../images/album_covers/balu_brigada.png';
+import buzzkill from '../images/album_covers/buzzkill.png';
+import allOut80s from '../images/album_covers/all_out_80s.png';
 
 // Cassette data - mix of playlists and albums
 // Replace spotifyId with your actual Spotify playlist/album IDs
 // Add imageUrl with the album/playlist cover image URL
+// Add trackCount for dynamic height calculation
 const CASSETTES = [
     {
         id: 1,
-        name: 'Late Night Coding',
-        spotifyId: '37i9dQZF1DX5trt9i14X7j',
+        name: 'If I Were A Song',
+        spotifyId: '2M2Q9misjvO1UoMeCVIqoN',
         type: 'playlist',
         color: '#e84393',
         accentColor: '#fd79a8',
-        imageUrl: '', // Add your playlist cover URL here
+        imageUrl: ifIWereASong,
+        trackCount: 17, // Update with actual track count
     },
     {
         id: 2,
@@ -23,44 +30,57 @@ const CASSETTES = [
         color: '#00cec9',
         accentColor: '#81ecec',
         imageUrl: welcomeToScienceFair,
+        trackCount: 10, // Update with actual track count
     },
     {
         id: 3,
-        name: 'Road Trip Mix',
-        spotifyId: '37i9dQZF1DXdPec7aLTmlC',
+        name: 'Balu Brigada',
+        spotifyId: '6O8lAID6zGVN3tNJAVWglv',
         type: 'playlist',
-        color: '#fdcb6e',
-        accentColor: '#ffeaa7',
-        imageUrl: '',
+        color: '#f10b08',
+        accentColor: '#ff6b6b',
+        imageUrl: baluBrigada,
+        trackCount: 12, // Update with actual track count
     },
     {
         id: 4,
-        name: 'Study Session',
-        spotifyId: '37i9dQZF1DX8Uebhn9wzrS',
+        name: 'Forrest Nolan Vibes',
+        spotifyId: '7I2luGYMatVHG253NegHNM',
         type: 'playlist',
         color: '#a29bfe',
         accentColor: '#dfe6e9',
-        imageUrl: '',
+        imageUrl: ofEveryone,
+        trackCount: 4, // Update with actual track count
     },
     {
         id: 5,
-        name: 'Throwback Hits',
-        spotifyId: '37i9dQZF1DX4o1oenSJRJd',
+        name: 'All Out 80s',
+        spotifyId: '37i9dQZF1DX4UtSsGT1Sbe',
         type: 'playlist',
         color: '#ff7675',
         accentColor: '#fab1a0',
-        imageUrl: '',
+        imageUrl: allOut80s,
+        trackCount: 150, // Update with actual track count
     },
     {
         id: 6,
-        name: 'Indie Favorites',
-        spotifyId: '37i9dQZF1DX2Nc3B70tvx0',
+        name: 'Buzzkill',
+        spotifyId: '2HkiV4h1rda51ivL7QPoVg',
         type: 'playlist',
         color: '#55a3ff',
         accentColor: '#74b9ff',
-        imageUrl: '',
+        imageUrl: buzzkill,
+        trackCount: 13, // Update with actual track count
     },
 ];
+
+// Calculate embed height based on track count (header ~152px + ~56px per track, max 700px)
+const getEmbedHeight = (trackCount) => {
+    const baseHeight = 152;
+    const perTrackHeight = 56;
+    const maxHeight = 700;
+    return Math.min(baseHeight + (trackCount * perTrackHeight), maxHeight);
+};
 
 const Cassette = ({ cassette, isSelected, isInPlayer, onClick, side }) => {
     return (
@@ -274,7 +294,7 @@ const Music = () => {
                                     key={selectedCassette.id}
                                     src={getSpotifyEmbedUrl(selectedCassette)}
                                     width="100%"
-                                    height="700"
+                                    height={getEmbedHeight(selectedCassette.trackCount || 10)}
                                     frameBorder="0"
                                     allowFullScreen=""
                                     allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
