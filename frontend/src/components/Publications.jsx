@@ -64,7 +64,7 @@ const Publications = () => {
         <div className="publications-page">
             <div className="publications-container">
                 <h1 className="publications-title">Publications</h1>
-                <p className="publications-subtitle">Contributions to the Human-Computer Interaction and Machine Learning Communities</p>
+                {/* <p className="publications-subtitle">Contributions to the Human-Computer Interaction and Machine Learning Communities</p> */}
 
                 <div className="publications-grid">
                     {PUBLICATIONS.map((pub, index) => (

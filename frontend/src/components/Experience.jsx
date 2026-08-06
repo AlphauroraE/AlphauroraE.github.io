@@ -161,7 +161,7 @@ const Experience = () => {
 
             <div className="experience-container">
                 <h1 className="experience-title">Experience</h1>
-                <p className="experience-subtitle">My journey in research, teaching, and leadership</p>
+                {/* <p className="experience-subtitle">My journey in research, teaching, and leadership</p> */}
 
                 {/* Mini Timeline */}
                 <div className="timeline-container">
