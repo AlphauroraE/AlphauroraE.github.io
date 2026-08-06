@@ -15,12 +15,12 @@ import Bottom from './Bottom';
 // Optional 'position' field controls which part of the image is shown (default: 'center')
 // Examples: 'top', 'bottom', 'left', 'right', 'center top', '50% 25%'
 const NEWS_CAROUSEL_IMAGES = [
-    { src: researchsymposium26, alt: "Joanne presenting a poster at the 2026 CHCI Research Symposium" },
     { src: coffee_chat, alt: "Joanne at Coffee Chat", position: '80% 60%'},
     { src: research_workshop_back, alt: "Joanne Teaching Research Workshop", position: "45% 40%" },
     { src: research_workshop_front, alt: "Joanne Teaching Research Workshop"},
     { src: kh_research, alt: "Joanne at Intro to Research"},
     { src: pyth_workshop, alt: "Joanne Teaching Python" },
+    { src: researchsymposium26, alt: "Joanne presenting a poster at the 2026 CHCI Research Symposium" },
 ];
 
 // { src: kh_research, alt: "Joanne at Intro to Research", fit: 'contain' },
