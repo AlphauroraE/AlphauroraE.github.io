@@ -676,6 +676,13 @@
     color: #666;
 }
 
+/* Mobile-only elements - hidden on desktop */
+.mobile-preview-section,
+.mobile-cassette-grid,
+.mobile-spotify-section {
+    display: none;
+}
+
 /* Mobile Responsiveness */
 @media (max-width: 1200px) {
     .music-layout {
@@ -693,34 +700,124 @@
 }
 
 @media (max-width: 768px) {
-    .music-title {
-        font-size: 24px;
+    /* Hide desktop layout on mobile */
+    .music-layout {
+        display: none;
     }
 
-    .cassette-rack {
+    /* Show mobile elements */
+    .mobile-preview-section,
+    .mobile-cassette-grid,
+    .mobile-spotify-section {
+        display: block;
+    }
+
+    .music-title {
+        font-size: 20px;
+        margin-bottom: 24px;
+    }
+
+    /* Mobile Preview Section */
+    .mobile-preview-section {
+        margin-bottom: 24px;
+    }
+
+    .mobile-preview-box {
+        background: rgba(0, 0, 0, 0.6);
+        border-radius: 16px;
+        padding: 16px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        border: 2px solid #333;
+        min-height: 100px;
+        transition: all 0.3s ease;
+    }
+
+    .mobile-preview-box.active {
+        border-color: #ff00ff;
+        box-shadow: 0 0 20px rgba(255, 0, 255, 0.3);
+    }
+
+    .mobile-preview-image {
+        width: 80px;
+        height: 80px;
+        border-radius: 8px;
+        background-size: cover;
+        background-position: center;
+        flex-shrink: 0;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    }
+
+    .mobile-preview-info {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        flex: 1;
+        min-width: 0;
+    }
+
+    .mobile-preview-title {
+        font-family: 'Press Start 2P', cursive;
+        font-size: 10px;
+        color: #fff;
+        line-height: 1.4;
+        word-wrap: break-word;
+    }
+
+    .mobile-preview-status {
+        font-family: 'Press Start 2P', cursive;
+        font-size: 8px;
+        color: #666;
+    }
+
+    .mobile-preview-status.playing {
+        color: #00ff00;
+        text-shadow: 0 0 10px #00ff00;
+        animation: blink 1s infinite;
+    }
+
+    .mobile-preview-empty {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        padding: 20px;
+    }
+
+    .mobile-preview-empty span {
+        font-family: 'Press Start 2P', cursive;
+        font-size: 10px;
+        color: #666;
+        text-align: center;
+    }
+
+    /* Mobile Cassette Grid */
+    .mobile-cassette-grid {
+        display: flex;
         flex-direction: column;
         align-items: center;
+        gap: 16px;
+        margin-bottom: 24px;
     }
 
-    .cassette-player {
+    .mobile-cassette-grid .cassette {
+        width: 200px;
+    }
+
+    /* Hide album preview popups on mobile */
+    .mobile-cassette-grid .album-preview {
+        display: none;
+    }
+
+    /* Mobile Spotify Section */
+    .mobile-spotify-section {
+        margin-top: 24px;
+    }
+
+    .mobile-spotify-section .spotify-container {
         width: 100%;
-        max-width: 350px;
-        transform: scale(0.9);
-        margin-bottom: -20px;
-    }
-
-    .spotify-container {
-        width: 100%;
-        max-width: 300px;
-    }
-
-    .cassette {
-        width: 160px;
-    }
-
-    .cassette-reel {
-        width: 30px;
-        height: 30px;
+        max-width: 100%;
     }
 
     .sun {
@@ -731,27 +828,31 @@
 
 @media (max-width: 480px) {
     .music-content {
-        padding: 20px;
+        padding: 16px;
     }
 
     .music-title {
-        font-size: 18px;
+        font-size: 16px;
     }
 
-    .cassette {
-        width: 140px;
+    .mobile-cassette-grid .cassette {
+        width: 180px;
     }
 
-    .cassette-reel {
-        width: 26px;
-        height: 26px;
+    .mobile-preview-image {
+        width: 70px;
+        height: 70px;
     }
 
-    .cassette-title {
-        font-size: 8px;
+    .mobile-preview-title {
+        font-size: 9px;
     }
 
-    .player-brand {
-        font-size: 10px;
+    .mobile-preview-status {
+        font-size: 7px;
+    }
+
+    .mobile-preview-empty span {
+        font-size: 9px;
     }
 }

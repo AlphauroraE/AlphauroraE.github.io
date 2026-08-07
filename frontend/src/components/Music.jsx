@@ -278,6 +278,44 @@ const Music = () => {
             <div className="music-content">
                 <h1 className="music-title">MY MIXTAPES</h1>
 
+                {/* Mobile preview section - shows album art and player status */}
+                <div className="mobile-preview-section">
+                    <div className={`mobile-preview-box ${selectedCassette ? 'active' : ''}`}>
+                        {selectedCassette ? (
+                            <>
+                                <div
+                                    className="mobile-preview-image"
+                                    style={{ backgroundImage: `url(${selectedCassette.imageUrl})` }}
+                                />
+                                <div className="mobile-preview-info">
+                                    <span className="mobile-preview-title">{selectedCassette.name}</span>
+                                    <span className={`mobile-preview-status ${isPlaying ? 'playing' : ''}`}>
+                                        {isPlaying ? 'PLAYING' : 'LOADING...'}
+                                    </span>
+                                </div>
+                            </>
+                        ) : (
+                            <div className="mobile-preview-empty">
+                                <span>TAP A CASSETTE TO PLAY</span>
+                            </div>
+                        )}
+                    </div>
+                </div>
+
+                {/* Mobile cassette grid */}
+                <div className="mobile-cassette-grid">
+                    {CASSETTES.map((cassette) => (
+                        <Cassette
+                            key={cassette.id}
+                            cassette={cassette}
+                            isSelected={selectedCassette?.id === cassette.id}
+                            isInPlayer={selectedCassette?.id === cassette.id && !isEjecting}
+                            onClick={() => handleCassetteClick(cassette)}
+                            side="mobile"
+                        />
+                    ))}
+                </div>
+
                 <div className="music-layout">
                     <div className="cassette-rack left-rack">
                         {leftCassettes.map((cassette) => (
@@ -333,6 +371,25 @@ const Music = () => {
                             />
                         ))}
                     </div>
+                </div>
+
+                {/* Mobile Spotify embed */}
+                <div className="mobile-spotify-section">
+                    {selectedCassette && (
+                        <div className="spotify-container">
+                            <iframe
+                                key={selectedCassette.id}
+                                src={getSpotifyEmbedUrl(selectedCassette)}
+                                width="100%"
+                                height={getEmbedHeight(selectedCassette.trackCount || 10)}
+                                frameBorder="0"
+                                allowFullScreen=""
+                                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                                loading="lazy"
+                                className="spotify-embed"
+                            ></iframe>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>
